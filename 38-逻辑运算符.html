@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逻辑运算符</title>
+</head>
+<body>
+<script>
+    /*
+        && 与
+        || 或
+        ! 非
+        ?? 空值合并
+    */
+    let a = 10,b = 20;
+    const result = a ?? b; // 当a是null或undefined时，将b赋值给result，如果不是则将a赋值给result
+    console.log(result); // a
+
+    // 替代三元运算符
+    let c = null;
+    let e = c===null ? 100 : 200;
+    console.log(e); // 100
+     let d = c ?? 200;
+     console.log(d); // 200
+</script>
+</body>
+</html>

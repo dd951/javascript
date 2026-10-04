@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的创建</title>
+</head>
+
+<body>
+    <script>
+        // 1、工厂模式
+        // 适用场景：需要创建多个相似对象，但不需要复杂继承关系时。
+        function createPerson(name, age) {
+            return {
+                name,
+                age,
+                greet() {
+                    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+                }
+            };
+        }
+
+        const person = createPerson('Alice', 25);
+        person.greet();
+
+        // 2、构造函数模式
+        // 注意：以下方式将方法定义在构造函数中，会导致每个实例都创建新方法。浪费内存。
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+
+            this.greet = function () {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        }
+
+        const person2 = new Person('Bob', 30);
+        person2.greet();
+
+        // 3、原型模式
+        // 实际应用：这是ES5时代最常用的面向对象模式，方法共享，节省内存。
+        function Person2(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person2.prototype.greet = function () {
+            console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+        };
+
+        const person3 = new Person2('Charlie', 35);
+        person3.greet();
+
+        // 4、ES6 class 语法(开发者首选)
+        // 最佳实践：现代JavaScript开发中，class语法是首选，它更清晰，且底层仍然是基于原型的。
+        class Person4 {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`你好，我是${this.name}`);
+            }
+
+            // 静态方法
+            static createAnonymous() {
+                return new Person4('匿名', 0);
+            }
+        }
+
+        const person4 = new Person4('钱七', 35);
+        person4.greet();
+
+        const anonymous = Person4.createAnonymous();
+        anonymous.greet(); // 你好，我是匿名
+        // person4.createAnonymous().greet(); // 报错：TypeError: person4.createAnonymous is not a function
+    </script>
+</body>
+
+</html>

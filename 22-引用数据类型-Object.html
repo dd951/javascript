@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object</title>
+</head>
+<body>
+<script>
+    // 引用数据类型
+    // 引用数据类型是按引用访问的，存储在堆内存中，变量保存的是内存地址。“引用”本身在栈中，而引用的“实际数据”在堆中。
+    // Object 是所有引用类型的基类，包括以下子类型：
+
+    // 1、普通对象
+    let obj = {
+        name: 'zhou'
+    };
+    console.log(obj);
+    console.log(typeof obj); // object
+
+    // 2、数组
+    let arr = [1, 2, 3];
+    console.log(arr);
+    console.log(typeof arr); // object
+
+    // 3、函数
+    function sayHello() {
+        console.log('hello');
+    }
+    console.log(sayHello);
+    console.log(typeof sayHello); // function
+
+    // 4、日期
+    let date = new Date();
+    console.log(date);
+    console.log(typeof date); // object
+
+    // 5、正则表达式
+    let reg = /hello/;
+    console.log(reg);
+    console.log(typeof reg); // object
+
+    // 6、包装对象（如 new Number()）
+    let num = new Number(10);
+    console.log(num);
+    console.log(typeof num); // object
+</script>
+</body>
+</html>

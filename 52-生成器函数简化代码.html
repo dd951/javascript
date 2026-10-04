@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成器函数简化代码</title>
+</head>
+<body>
+<script>
+    const myObject = {
+        data: [10, 20, 30, 40],
+        [Symbol.iterator]: function* () { // 使用 * 表示这是一个生成器函数
+            for (const item of this.data) {
+                yield item; // 每次迭代返回一个值
+            }
+        }
+
+        /*
+        // 或者这样写
+        *[Symbol.iterator]() {
+          for (const item of this.data) {
+            yield item; // 每次迭代返回一个值
+          }
+        }
+        */
+
+    };
+
+    for (const value of myObject) {
+        console.log(value); // 10, 20, 30
+    }
+
+    // 简写形式
+    let user = {
+        username: "jack",
+        age: 20,
+        [Symbol.iterator]: function* () {
+            for (let v in this) {
+                yield this[v];
+            }
+        },
+    };
+
+    for (let value of user) {
+        console.log(value);
+    }
+
+    // 再次简写
+    let user2 = {
+        username: "jack",
+        age: 20,
+        *[Symbol.iterator]() {
+            for (let v in this) {
+                yield this[v];
+            }
+        },
+    };
+
+    for (let value of user2) {
+        console.log(value);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="http://localhost:8080/user/save">
+        用户名：<input type="text" name="username" value="jackson" />
+        <button id="submitBtn">提交</button>
+    </form>
+
+    <script>
+
+        /* 
+        使用 dispatchEvent 派发事件
+        这是最标准的方式，也是现代开发中推荐的。因为这种方式可以更加精确的控制事件。
+        dispatchEvent() 只会触发事件监听器，但不会执行与事件关联的浏览器默认行为。
+        */
+
+        // 绑定事件
+        document.querySelector("#submitBtn").addEventListener("click", function () {
+            console.log("按钮被点击了");
+        });
+
+        setTimeout(function () {
+            // 创建鼠标单击事件对象
+            let clickEvent = new Event("click", {
+                bubbles: true, // 是否冒泡
+                cancelable: true // 这个事件是否允许被 preventDefault() 取消
+            });
+            // 派发事件
+            document.querySelector("#submitBtn").dispatchEvent(clickEvent);
+        }, 3000);
+    </script>
+</body>
+
+</html>

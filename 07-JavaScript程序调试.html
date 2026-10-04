@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript程序调试</title>
+</head>
+
+<body>
+
+<script>
+    let username = "jackson";
+    let age = 18;
+
+    // 1、可以直接在浏览器 console 控制台上执行临时代码
+
+    // 2、给 JS 代码添加断点
+    debugger;
+    username = username.substring(4); // 截取索引 4 到末尾 → 得到 "son"
+    console.log(`用户名：${username}`);
+
+    // 3、F12 打开调试面板，选择 Sources面板打断点
+</script>
+</body>
+</html>

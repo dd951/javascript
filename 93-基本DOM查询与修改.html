@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本DOM查询与修改</title>
+</head>
+
+<body>
+
+    <h1 id="header">原始标题</h1>
+
+    <div id="container">第一个div容器</div>
+
+    <div id="container">
+        <p>这是第一个段落。</p>
+        <p>这是第二个段落。</p>
+        <ul>
+            <li class="item">列表项1</li>
+            <li class="item">列表项2</li>
+            <li class="item">列表项3</li>
+        </ul>
+        <div class="item some-class">
+            <span id="target">嵌套元素</span>
+        </div>
+    </div>
+
+    <script>
+
+
+
+        // 示例1：通过id获取元素并修改内容
+        let header = document.getElementById('header');
+        header.textContent = '欢迎学习DOM编程!';
+
+        // 示例2：通过类名获取元素集合
+        let items = document.getElementsByClassName('item');
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.color = 'blue';
+        }
+
+        // 示例3：通过标签名获取元素集合
+        let ps = document.getElementsByTagName('p');
+        console.log('ps:', ps);
+        ps[0].innerHTML = '这是第一个段落，已被修改。';
+
+        // 以下是现代比较推荐的方式
+        // 示例4：通过选择器获取元素，和CSS选择器通用（获取符合选择器的第一个元素）
+        let container = document.querySelector('#container');
+        console.log('container:', container);
+
+        // 获取选择器对应的所有元素
+        let allItems = document.querySelectorAll(".item");
+        console.log('allItems:', allItems);
+
+
+        // 示例5：查找离element最近的祖先元素（从当前元素开始向上查找匹配指定选择器的最近的祖先元素（包括自己））
+        // 返回一个值。从自己开始匹配，自己符合就返回自己，自己不符合再找最近的祖先。
+        let element = document.getElementById('target');
+        let elt = element.closest('.item');
+        console.log('closest .item:', elt);
+
+        // 示例6：判断element元素是否匹配选择器
+        let isMatch = element.matches('.some-class');
+        console.log('matches .some-class:', isMatch);
+
+    </script>
+</body>
+
+</html>

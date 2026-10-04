@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for in 循环</title>
+</head>
+<body>
+<script>
+    /*
+      遍历对象自身的和继承的可枚举属性（不仅遍历自身属性，还会遍历原型链上的可枚举属性）
+      遍历顺序不固定（依赖于 JavaScript 引擎实现）
+      不适合遍历数组（会遍历数组的所有可枚举属性，包括非数字键）
+     */
+    // 1、不适合遍历数组（会遍历数组的所有可枚举属性，包括非数字键）
+    let arr = ['jack', 'lucy', true, false];
+    arr.someProperty = 'value';
+
+    for(const index in arr){
+        console.log(index);
+    }
+    // 数组的遍历方式推荐：传统的 for 循环，或者 forEach 方法，或者 for..of 循环。
+
+    // 2、遍历对象属性示例
+    const obj = { a: 1, b: 2, c: 3 };
+
+    // 给obj对象添加一个 不可枚举的 属性，该属性无法被for..in遍历
+    Object.defineProperty(obj, "d", {
+        // 新增属性 d 的值为 4
+        value: 4,
+        // 不可枚举
+        enumerable: false
+    });
+
+    for (const key in obj) {
+        console.log(key); // 输出 'a', 'b', 'c'
+        console.log(obj[key]); // 输出 1, 2, 3
+    }
+</script>
+</body>
+</html>

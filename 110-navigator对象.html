@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navigator对象</title>
+</head>
+
+<body>
+    <script>
+        const ua = navigator.userAgent;
+
+        // 判断真实浏览器
+        if (ua.includes('Chrome') && !ua.includes('Edg')) {
+            console.log('这是 Chrome 浏览器');
+        } else if (ua.includes('Safari') && !ua.includes('Chrome')) {
+            console.log('这是 Safari 浏览器');
+        } else if (ua.includes('Firefox')) {
+            console.log('这是 Firefox 浏览器');
+        } else if (ua.includes('Edg')) {
+            console.log('这是 Edge 浏览器');
+        }
+
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        if (isMobile()) {
+            console.log('这是移动设备');
+        } else {
+            console.log('这是桌面设备');
+        }
+
+        // navigator.language：语言版本。
+        console.log(navigator.language); // zh-CN
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set对象</title>
+</head>
+<body>
+    <script>
+        // 1、new Set()- 创建 Set 集合 无重复值
+        let set = new Set();
+        set.add(1);
+        set.add(2);
+        set.add(1);
+        set.add(3);
+        set.add(2);
+        console.log(set); // Set {1, 2, 3}
+
+        // 2、add(value) - 添加值
+        set.add(4);
+        console.log(set); // Set {1, 2, 3, 4}
+        
+        // 3、has(value) - 检查值是否存在
+        console.log(set.has(1)); // true
+        console.log(set.has(4)); // true
+        console.log(set.has(5)); // false
+        
+        // 4、delete(value) - 删除值
+        console.log(set.delete(1)); // true
+        console.log(set.has(1)); // false
+        
+        // 5、clear() - 清空Set
+        console.log(set.size); // 3
+        set.clear();
+        console.log(set); // Set {}
+        
+        // 6、size - 元素数量（是属性 size，不是方法）
+        console.log(set.size); // 0
+    </script>
+</body>
+</html>

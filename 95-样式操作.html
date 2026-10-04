@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>样式操作</title>
+     
+    <style>
+        /* 初始样式 */
+        #target {
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s; /* 过渡效果，0.3秒内完成所有属性的过渡。*/
+        }
+
+        /* toggle 切换的类名样式 */
+        .bigger {
+            background-color: lightblue !important;
+            width: 200px !important;
+            height: 200px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 目标元素 -->
+    <div id="target" class="AAA"></div>
+
+    <!-- 按钮 -->
+    <button class="btn">点击切换样式</button>
+
+    <script>
+        // // 示例1：修改元素样式
+        // let box = document.getElementById('box');
+        // // 注意：如果样式的名字中有"-"，则采用驼峰式命名方式。
+        // box.style.backgroundColor = 'lightblue';
+        // box.style.width = '200px';
+        // box.style.height = '200px';
+
+        // 示例2：切换类名来改变样式
+        let button = document.querySelector('.btn');
+        button.addEventListener('click', function () {
+            let element = document.getElementById('target');
+            // toggle方法两个作用：添加或删除 样式。
+            // 如果元素的class列表中存在 bigger，则删除。
+            // 如果元素的class列表中不存在 bigger，则添加。
+            element.classList.toggle('bigger');
+
+            // 通过元素的 className 也可以修改样式，但这种方式会将之前的class列表全部覆盖。
+            // element.className = "bigger";
+        });
+    </script>
+</body>
+
+</html>

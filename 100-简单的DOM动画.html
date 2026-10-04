@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .box{
+      position:relative; 
+      width: 100px;
+      height: 100px;
+      background-color: black;
+    }
+  </style>
+<body>
+    
+    <button id="btn1">移动</button>
+    <div id="box1" class="box"></div>
+
+    <button id="btn2">淡入淡出</button>
+    <div id="box2" class="box"></div>
+
+    <script>
+
+        /*
+        移动元素的话就是不断设置 left/right/top/bottom 的样式，但 position 属性需要设
+        置为 relative 淡入淡出的效果主要是改变元素 opacity 的样式。
+        */
+
+        let btn1 = document.getElementById('btn1');
+        let box1 = document.getElementById('box1');
+        let pos = 0;
+
+        btn1.addEventListener('click', function() {
+            pos += 10;
+            // 要实现这个功能，box的css样式中必须指定了 position 样式，例如：position:relative;
+            box1.style.left = pos + 'px';
+        });
+
+        let btn2 = document.getElementById('btn2');
+        let box2 = document.getElementById('box2');
+        let op = 1;
+
+        btn2.addEventListener('click', function() {
+            op = op === 1 ? 0.3 : 1;
+            box2.style.opacity = op;
+            
+            // 设置 CSS 过渡效果，让元素属性变化时产生动画渐变，而不是瞬间变化。
+            // 让元素的 opacity（透明度）属性在发生变化时，以 0.5 秒的时间平滑过渡（而不是瞬间变化）。
+            box2.style.transition = 'opacity 0.5s';
+        });
+    </script>
+</body>
+</html>

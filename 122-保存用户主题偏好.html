@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body class="light">
+    <button onclick="toggleTheme()">切换主题</button>
+    <p>这是一个演示页面</p>
+
+    <script>
+        // 加载时应用保存的主题
+        const saved = localStorage.getItem('theme');
+        if (saved) document.body.className = saved;
+
+        function toggleTheme() {
+            const newTheme = document.body.className === 'light' ? 'dark' : 'light';
+            document.body.className = newTheme;
+            localStorage.setItem('theme', newTheme);
+        }
+    </script>
+
+    <style>
+        body.light {
+            background: white;
+            color: black;
+        }
+
+        body.dark {
+            background: black;
+            color: white;
+        }
+    </style>
+</body>
+
+</html>

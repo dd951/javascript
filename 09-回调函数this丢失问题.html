@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回调函数this丢失问题</title>
+</head>
+<body>
+
+
+<script>
+
+    // 回调函数的定义是：将一个函数作为参数传递给另一个函数，并在外部函数内部被调用执行的函数。
+    // 回调函数 this 丢失问题 - 演示
+    let user = {
+        name: "小明",
+        say: function() {
+            setTimeout(function() {
+                console.log(this.name); // window.name 是浏览器中一个预设存在的属性，它的默认值就是空字符串 ""（this指向了window）
+            }, 100);
+        }
+    };
+    user.say();
+
+    // 使用箭头函数 - this 可以保住
+    let user2 = {
+        name: "小红",
+        say: function() {
+            setTimeout(() => {
+                console.log(this.name); // 输出: 小红（this指向了user2对象）
+            }, 100);
+        }
+    };
+    user2.say();
+</script>
+</body>
+</html>

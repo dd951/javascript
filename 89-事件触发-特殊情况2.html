@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单提交事件的特殊情况2</title>
+</head>
+
+<body>
+
+    <form action="http://localhost:80/save" method="get">
+        用户名：<input type="text" name="username" value="jack">
+    </form>
+
+    <script>
+
+        /* 
+        dispatchEvent(new Event('submit'))：只触发 submit 事件，不会提交表单。
+        */
+
+        // 给form表单绑定submit事件
+        const userForm = document.querySelector('form');
+        userForm.addEventListener('submit', function () {
+            alert('表单提交事件发生了');
+            // 这种方式是推荐的，当表单验证合法的时候再提交表单
+            // if(validateForm()){
+            // userForm.submit();
+            // }s
+        });
+        // 让submit事件发生，但是要看一下表单是否会提交
+        userForm.dispatchEvent(new Event('submit'));
+    </script>
+</body>
+
+</html>

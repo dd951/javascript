@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数组合</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        函数式编程之函数组合
+        概念：函数组合就是把多个函数合并成一个新函数，这个新函数会从右到左（或从左到右）
+        依次执行这些函数。
+        */
+        // compose函数实现了函数的组合。
+        /* 
+        ...fns 的意思是：把调用函数时传入的所有实参，收集到一个数组里，这个数组就叫 fns
+        一、出现在 函数形参列表 里 → 剩余参数（Rest Parameters）
+        function compose(...fns) { ... }
+        此时 ... 的意思是 "收拢" —— 把传进来的多个参数打包成一个数组。
+        compose(square, double, add1);
+        // fns = [square, double, add1]
+
+        二、出现在 函数调用 / 数组 / 对象 里 → 展开运算符（Spread Operator）
+        const arr1 = [1, 2];
+        const arr2 = [...arr1, 3, 4];  // [1, 2, 3, 4]
+        //              ↑ 把数组拆成一个个元素
+        此时 ... 的意思是 "打散" —— 把数组/对象拆成一个个独立的值。
+        */
+        function compose(...fns) {
+            // 闭包
+            function compute(x) {
+                // reduce()方法是从左到右
+                // reduceRight()方法是从右到左
+                // 遍历数组fns，然后取出数组中每一个函数f(reduceRight是从数组的右侧开始取函数)
+                // 第一轮：x是初始值，初始值会自动赋值给累加器的第一个参数。这是累加器的固定规则。
+                return fns.reduceRight((v, f) => f(v), x);
+            }
+            return compute;
+        }
+
+        const add1 = x => x + 1;
+        const double = x => x * 2;
+        const square = x => x * x;
+
+        // transform是计算函数compute
+        // 含义：先求和，将求和的结果扩大2倍，将扩大2倍后的数据再求平方。（从右向左函数组合。）
+        const transform = compose(square, double, add1);
+
+        console.log(transform(2)); // ((2 + 1) * 2) * ((2 + 1) * 2) = 36
+    </script>
+</body>
+
+</html>

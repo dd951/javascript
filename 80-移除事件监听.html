@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移除事件监听</title>
+</head>
+
+<body>
+
+    <button id="btn">click me</button>
+    <button id="removeBtn">remove click</button>
+    <button id="btn2">click me2</button>
+    <button id="removeBtn2">remove click2</button>
+
+    <script>
+        // 1. 对于 addEventListener() 添加的监听器
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('btn');
+            const handler = function () {
+                console.log('click me!!!!');
+            }
+            btn.addEventListener('click', handler);
+            const removeBtn = document.getElementById('removeBtn');
+            removeBtn.addEventListener('click', function () {
+                btn.removeEventListener('click', handler); // 移除事件监听器
+            });
+        });
+
+        // 2. 对于 DOM 属性方式
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn2 = document.getElementById('btn2');
+            const handler = function () {
+                console.log('click me2!!!!');
+            }
+            btn2.onclick = handler;
+            const removeBtn2 = document.getElementById('removeBtn2');
+            removeBtn2.addEventListener('click', function () {
+                btn2.onclick = null; // 移除事件监听器
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式对象的常用方法</title>
+</head>
+
+<body>
+    <script>
+
+        // 使用正则表达式，返回字符串中符合正则表达式的所有子字符串
+
+        // 第一种方案：使用正则表达式对象的 exec 方法
+        const str = '123x456y789';
+        const regExp = /\d+/g; // g标志非常重要。
+        let match;
+        console.log(regExp.exec(str));
+        while ((match = regExp.exec(str)) !== null) {
+            console.log(match[0]);
+        }
+
+        // 第二种方案：使用字符串对象的 match 方法
+        const str2 = '123x456y789';
+        const regExp2 = /\d+/g; // g标志非常重要
+        console.log(str2.match(regExp2));
+    </script>
+</body>
+
+</html>

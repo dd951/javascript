@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调函数的event参数</title>
+</head>
+
+<body>
+
+    <button id='myButton'>点击我</button>
+
+    <script>
+        /*
+        为 DOM 元素绑定事件时一般都会有一个回调函数，
+        当回调函数被调用时会自动传递过来一个 event 对象，
+        这个 event 对象代表了刚发生的这个事件。event.target
+        属性可以获取到发生事件的 DOM 元素。
+        */
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('myButton');
+            // 注意：在非严格模式下，可以直接使用 event，浏览器会自动将其作为全局变量。(建议函数的参数写上event，这样在严格模式下不会报错。)
+            btn.addEventListener('click', function (event) {
+                console.log(`${event.target.innerText}：按钮被点击了!!`);
+            });
+        });
+    </script>
+</body>
+
+</html>

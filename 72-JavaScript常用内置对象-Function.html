@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function对象</title>
+</head>
+
+<body>
+    <script>
+        /*
+        1、call() 立即调用函数，并临时改变函数内部的 this 指向（具体指向谁，主要看 call 方法的第一个参数传谁，传张三，函数内部的 this 就是张三。），还可以传递参数（逗号分隔）。
+        实际用途：
+        - 借用其他对象的方法（如数组方法操作类数组对象）。
+        - 明确指定 this 的上下文（如调用构造函数继承父类属性）。
+        */
+
+        // 1.1 借用数组方法操作类数组对象
+        // 类数组对象（如 arguments）没有数组的 push 方法
+        // 无论函数是否声明了参数，它都能接收传入的实参。这些实参会自动被收集到一个特殊对象 —— arguments 中
+        function example() {
+            const arrLike = arguments;
+            Array.prototype.push.call(arrLike, 4); // 借用数组的 push 方法
+            console.log(arrLike); // 输出: [1, 2, 3, 4]
+        }
+        example(1, 2, 3);
+
+        // 1.2 明确指定 this 的上下文
+        const user = {
+            username: 'jackson',
+            age: 30,
+            printInfo() {
+                console.log(`username:${this.username},age:${this.age}`);
+            }
+        };
+
+        const anotherUser = {
+            username: 'lucy',
+            age: 20
+        };
+
+        user.printInfo.call(anotherUser);
+
+        console.log("======================================");
+        /*
+        2、用 bind 优化函数的两种场景：
+            2.1 永久固定 this：防止函数内部的 this 乱跑。  
+            2.2 固定参数：减少重复传相同的值。
+        */
+        // 场景1: 对象方法中的this丢失问题
+        const person = {
+            name: "Alice",
+            greet: function () {
+                return `Hello, I'm ${this.name}`;
+            },
+        };
+
+        // 直接调用 - this正确指向person
+        console.log("场景1 - 直接调用:", person.greet());
+
+        // 方法提取后调用 - this丢失
+        const greetFunc = person.greet;
+        console.log("场景1 - 提取后调用:", greetFunc()); // Hello, I'm undefined
+
+        // 使用bind固定this
+        const boundGreet = person.greet.bind(person);
+        console.log("场景1 - 使用bind:", boundGreet());
+
+        // 场景2: 回调函数中的this
+        const timer = {
+            count: 0,
+            start: function () {
+                // 不使用bind - this会丢失
+                setTimeout(function () {
+                    console.log("场景2 - 不使用bind:", this.count); // undefined
+                }, 100);
+
+                // 使用bind固定this
+                setTimeout(
+                    function () {
+                        console.log("场景2 - 使用bind:", this.count); // 0
+                    }.bind(this),
+                    200
+                );
+            },
+        };
+        timer.start();
+
+        // 场景3: 预设参数
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        // 使用bind预设第一个参数
+        const double = multiply.bind(null, 2); // 调用multiply不需要对象，因此第一个参数null
+        console.log("场景3:", double(5)); // 10
+        console.log("场景3:", double(7)); // 14
+
+    </script>
+</body>
+
+</html>

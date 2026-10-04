@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number</title>
+</head>
+<body>
+<script>
+    // 数字类型
+    // 1、整数
+    let num1 = 10;
+    console.log(num1);
+    console.log(typeof num1); // number
+
+    // 2、浮点数
+    let num2 = 3.14;
+    console.log(num2);
+    console.log(typeof num2); // number
+
+    // 3、NaN 非数字
+    let num3 = NaN; // 当计算结果应该是数字，但实际的计算结果不是数字时，结果是NaN。
+    console.log(num3);
+    console.log(typeof num3); // number
+
+    // 4、Infinity 无限大
+    let num4 = Infinity;
+    console.log(num4);
+    console.log(typeof num4); // number
+    let num5 = 1/0; // 当除数是0时，计算结果是Infinity
+    console.log(num5);
+    console.log(typeof num5); // number
+
+</script>
+</body>
+</html>

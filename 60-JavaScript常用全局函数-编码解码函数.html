@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript常用全局函数-编码/解码函数</title>
+</head>
+<body>
+    <script>
+        // 1、encodeURI() 编码URI - 会保留URL的结构字符
+        console.log(encodeURI('http://localhost:8080/save?name=张三&age=18')); // http://localhost:8080/save?name=%E5%BC%A0%E4%B8%89&age=18
+
+        // 2、decodeURI() 解码URI
+        console.log(decodeURI('http://localhost:8080/save?name=%E5%BC%A0%E4%B8%89&age=18')); // http://localhost:8080/save?name=张三&age=18
+
+        // 3、encodeURIComponent() 编码URI - 不会保留URL的结构字符，全部都编
+        console.log(encodeURIComponent('http://localhost:8080/save?name=张三&age=18')); // http%3A%2F%2Flocalhost%3A8080%2Fsave%3Fname%3D%E5%BC%A0%E4%B8%89%26age%3D18
+
+        // 4、decodeURIComponent() 解码URI - 不会保留URL的结构字符，全部都解码
+        console.log(decodeURIComponent('http://localhost:8080/save?name=%E5%BC%A0%E4%B8%89%26age%3D18')); // http://localhost:8080/save?name=张三&age=18
+    </script>
+</body>
+</html>

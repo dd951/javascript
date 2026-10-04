@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建和添加元素</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <p>这是第一个段落。</p>
+        <p>这是第二个段落。</p>
+    </div>
+    <ul>
+    </ul>
+
+    <script>
+        // 示例1：创建新元素并添加到DOM
+        let newDiv = document.createElement('div');
+        newDiv.textContent = '我是新创建的div元素!';
+        document.body.appendChild(newDiv);
+
+        // 示例2：在特定位置插入元素
+        let container = document.getElementById('container');
+        let p = document.createElement('p');
+        p.textContent = '插入到容器中的新段落';
+        // 新元素插入到指定元素前面
+        // 调用 insertBefore方法的对象必须是父容器对象。
+        // 第一个参数是新插入的元素。
+        // 第二个参数是指定插入到哪个元素的前面
+        container.insertBefore(p, container.children[1]);
+
+        // 关于元素的firstElementChild和lastElementChild
+        // JS中的元素都有firstElementChild和lastElementChild属性
+        // firstElementChild用来获取当前元素下的第一个子元素
+        // lastElementChild用来获取当前元素下的最后一个子元素
+        // 需要注意的是：对于以上div来说
+        console.log(container.firstElementChild);
+        console.log(container.lastElementChild);
+
+        // 使用文档片段DocumentFragment 插入元素
+        // 创建文档片段对象
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < 10; i++) {
+            const li = document.createElement("li");
+            li.textContent = `项目${i}`;
+            // 把节点先追加到文档片段对象中。
+            fragment.appendChild(li);
+        }
+        // 再将文档片段追加到某个节点中
+        document.getElementsByTagName("ul")[0].appendChild(fragment);
+
+    </script>
+</body>
+
+</html>

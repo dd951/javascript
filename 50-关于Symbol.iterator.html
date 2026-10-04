@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于Symbol.iterator</title>
+</head>
+<body>
+<script>
+    /*
+    它被作为一个约定好的名字，让 JS 知道：你这个对象怎么被 for...of 遍历。
+
+    怎么能够知道这个对象是否能够被 for..of遍历？
+    typeof obj[Symbol.iterator] === 'function'，如果是 true 则表示该对象是可迭代对象，可以被 for..of遍历。
+
+    怎么能够让一个不可迭代的对象，变成可迭代的对象？
+    在对象内部添加一个 [Symbol.iterator]() {}方法，这是程序员与 for..of之间的约定。
+     */
+
+    // 实现可迭代对象
+    // 让该对象实现 Symbol.iterator方法【在这个方法中编写自定义的迭代逻辑】。
+    // 对象就可以被 for..of遍历
+
+    const myObject = {
+        data: [10, 20, 30],
+        [Symbol.iterator]() {
+            let index = 0;
+            // 要想符合迭代器协议，必须return一个含有next()的迭代器对象。以下就是返回一个带有next()方法的迭代器对象。
+            return {
+                // 必须使用箭头函数，因为只有这样才能保证this指向myObject。
+                next: () => {
+                    if (index < this.data.length) {
+                        // 迭代器协议中规定，next()方法的对象需要包含两个属性：value，done。
+                        return { value: this.data[index++], done: false };
+                    } else {
+                        // 当done:true时，value可以省略。
+                        // done:true 表示已经迭代完了。
+                        return { done: true };
+                    }
+                }
+            };
+        }
+    };
+
+    // 检测 myObject 是否可迭代
+    let isIterable = typeof myObject[Symbol.iterator] === 'function';
+    console.log(isIterable)
+
+    // 现在可以用 for...of 遍历
+    for (const value of myObject) {
+        console.log(value); // 10, 20, 30
+    }
+
+
+    // 迭代对象的属性。
+    let user = {
+        username: "jack",
+        age: 20,
+        [Symbol.iterator]() {
+            let keys = Object.keys(this);
+            let index = 0;
+
+            return {
+                next: () => {
+                    if (index < keys.length) {
+                        let key = keys[index++];
+                        return { value: `${key}: ${this[key]}`, done: false };
+                    }
+                    return { value: undefined, done: true };
+                },
+            };
+        },
+    };
+
+    // 检测 user 是否可迭代
+    let isIterable2 = typeof user[Symbol.iterator] === 'function';
+    console.log(isIterable2)
+
+    for (let value of user) {
+        console.log(value);
+    }
+
+</script>
+</body>
+</html>

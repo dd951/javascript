@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+<script>
+    // 符号类型
+    // 用于创建唯一的标识符，确保在程序中不会与其他变量冲突。
+    let sym1 = Symbol('sym1');
+    console.log(sym1);
+    console.log(typeof sym1); // symbol
+    let sym2 = Symbol('sym2');
+    console.log(sym2);
+    console.log(sym1 == sym2); // false
+</script>
+</body>
+</html>

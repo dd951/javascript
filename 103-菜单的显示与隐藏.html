@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <button id="control">显示</button>
+    <div id="menu" style="display:none">
+        <div>选项1</div>
+        <div>选项2</div>
+        <div>选项3</div>
+    </div>
+
+    <script>
+        // 主要是掌握元素的：display 样式
+        document.addEventListener("DOMContentLoaded", function(){
+          let menu = document.querySelector("#menu");
+          let status = 0;
+          document.getElementById("control").addEventListener("click", function(){
+            if(status == 0){
+              menu.style.display = 'block';
+              status = 1;
+            }else{
+              menu.style.display = 'none';
+              status = 0;
+            }
+          });
+        });
+    </script>
+</body>
+</html>

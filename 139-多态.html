@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多态</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        多态的核心思想是：不同子类可以对父类的同一方法提供不同的实现，但在调用时可以通过父类引用
+        统一处理，而实际执行的是子类的方法。
+        JS 是天生的多态，因为它是弱类型的。
+        */
+
+        class Person {
+            constructor(name) {
+                this.name = name;
+            }
+            speak() { }
+            doSome() {
+                console.log('do some');
+            }
+        }
+
+        class EnglishPerson extends Person {
+            constructor(name) {
+                super(name);
+            }
+            speak() {
+                console.log(`hello, my name is ${this.name}`);
+            }
+        }
+
+        class ChinesePerson extends Person {
+            constructor(name) {
+                super(name);
+            }
+            speak() {
+                console.log(`你好，我的名字叫${this.name}`);
+            }
+        }
+
+        const persons = [new EnglishPerson('jack'), new ChinesePerson('杰克')];
+        persons.forEach((person) => {
+            person.speak();
+            person.doSome();
+        });
+    </script>
+</body>
+
+</html>

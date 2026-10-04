@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error对象属性</title>
+</head>
+<body>
+<script>
+    // Error对象的主要属性有：
+    try {
+        notDefinedFunction();
+    } catch (err) {
+        console.log(err.name);     // "ReferenceError"
+        console.log(err.message);  // "notDefinedFunction is not defined"
+        console.log(err.stack);    // 堆栈跟踪信息（调试用）
+    }
+</script>
+</body>
+</html>

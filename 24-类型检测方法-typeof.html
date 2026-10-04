@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类型检测方法</title>
+</head>
+<body>
+<script>
+    // 1、typeof 检测基本数据类型。适用于基本类型（除 null 外），但对引用类型（如数组、对象）均返回 "object"。
+    let num1 = 10;
+    console.log(typeof num1); // number
+
+    let str1 = 'hello';
+    console.log(typeof str1); // string
+
+    let bool1 = true;
+    console.log(typeof bool1); // boolean
+
+    let null1 = null;
+    console.log(typeof null1); // object
+
+    // 2、typeof 检测基本引用类型。
+    let arr1 = [1, 2, 3];
+    console.log(typeof arr1); // object
+
+    let obj1 = {
+        name: 'zhou'
+    };
+    console.log(typeof obj1); // object
+
+    /*
+    typeof运算符的结果是以下8个小写字符串中的一个：
+        (1) "number"
+        (2) "string"
+        (3) "undefined"
+        (4) "boolean"
+        (5) "object"
+        (6) "function"
+        (7) "bigint"
+        (8) "symbol"
+    */
+</script>
+</body>
+</html>

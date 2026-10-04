@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>赋值运算符</title>
+</head>
+<body>
+<script>
+    /*
+     = 赋值
+     += 加法赋值
+     -= 减法赋值
+     *= 乘法赋值
+     /= 除法赋值
+     %= 取模赋值
+     **= 指数赋值
+     <<= 左移赋值
+     >>= 右移赋值
+     >>>= 无符号右移赋值
+     &= 按位与赋值
+     |= 按位或赋值
+     ^= 按位异或赋值
+     &&= 逻辑与赋值（ES2021）
+     ||= 逻辑或赋值（ES2021）
+     ??= 逻辑空赋值（ES2021） x = x ?? y;含义是：如果x是null或者undefined，就把y赋值给x。
+     */
+
+    // ??= 逻辑空赋值 - 仅当左侧的变量为 null 或 undefined 时，才将右侧的值赋给左侧变量
+    let a = null;
+    a ??= 10;
+    console.log(a); // 10
+    let b = 10;
+    b ??= 100;
+    console.log(b); // 10
+
+</script>
+</body>
+</html>

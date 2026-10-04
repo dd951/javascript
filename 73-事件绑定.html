@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+</head>
+
+<body>
+    <button onclick="handleClick()">点击我</button>
+    <button id='myButton'>点击我</button>
+    <button id='myButton2'>点击我</button>
+
+
+    <script>
+        // 1. HTML 内联事件属性
+        function handleClick() {
+            console.log('按钮被点击了');
+        }
+
+        // 2. DOM 属性事件处理器
+        const btn = document.getElementById('myButton');
+        btn.onclick = function() {
+            console.log('==> 按钮被点击了');
+        };
+        
+        // 3. addEventListener() 方法
+        const btn2 = document.getElementById('myButton2');
+        btn2.addEventListener('click', function() {
+            console.log('^=^ 按钮被点击了');
+        });
+    </script>
+</body>
+
+</html>

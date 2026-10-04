@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>展开运算符</title>
+</head>
+<body>
+<script>
+    // 展开运算符（...）
+    // 数组的合并
+    let arr1 = [1, 2, 3];
+    let arr2 = [4, 5, 6];
+    let combined = [...arr1, ...arr2]; // [1, 2, 3, 4, 5, 6]
+    console.log(combined); // 输出: [1, 2, 3, 4, 5, 6]
+
+    // 对象的合并
+    let obj1 = { a: 1, b: 2 };
+    let obj2 = { b: 3, c: 4 };
+    let merged = { ...obj1, ...obj2 }; // { a: 1, b: 3, c: 4 }
+    console.log(merged); // 输出: { a: 1, b: 3, c: 4 }
+</script>
+</body>
+</html>

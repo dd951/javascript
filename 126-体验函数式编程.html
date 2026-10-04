@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体验函数式编程 - JS 中的函数是一等公民</title>
+</head>
+<body>
+    <script>
+        /* 
+        函数式编程（Functional Programming, FP）是一种以函数为核心的编程范式，
+        函数可以作为参数，返回值，变量等。
+        */
+
+        // 1、函数作为返回值
+        // 外部函数
+        function outer(){
+            // 内部函数
+            function inner(username){
+                console.log(`Hello ${username}`);
+            }
+            // 函数也是对象，可以将函数返回给调用者。
+            return inner;
+        }
+
+        // 调用者无法直接访问内部函数
+        // inner(); // 报错：inner is not defined
+        // 可以通过调用外部函数拿到内部函数（innerFun是一个指向内部函数的一个变量）
+        const innerFun = outer();
+        // 虽然是变量，但可以当做内部函数使用。
+        innerFun('Tom');
+
+        // 2、函数作为参数
+        function fun(funParam){
+            funParam('Jack');
+        }
+
+        fun(
+            function sayHello(username){
+                console.log(`hello ${username}`);
+            }
+        );
+
+        // 当然以上函数也可以以箭头函数的方式传递
+        fun((username) => {
+            console.log(`Hi, ${username}`);
+        });
+    </script>
+</body>
+</html>

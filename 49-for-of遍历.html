@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for of 循环</title>
+</head>
+<body>
+<script>
+    /*
+      遍历可迭代对象的值
+      不会遍历对象的属性
+      是 ES6 新增的语法
+      可以配合 break, continue 和 return 使用
+     */
+
+    // 1、遍历数组，Set集合，字符串
+    // 数组
+    let arr = [1,2,3,4];
+    for(const value of arr){
+        console.log(value);
+    }
+    // Set集合
+    let mySet = new Set();
+    mySet.add("张三");
+    mySet.add("李四");
+    mySet.add("王五");
+    for(const name of mySet){
+        console.log(name);
+    }
+    // 字符串
+    let name = "king";
+    for(const c of name){
+        console.log(c);
+    }
+
+    // 2、变量名做属性名时需要 []
+    let propertyName = "name";
+    let user = {
+        [propertyName]: "jack" // 先计算 propertyName 的值，得到 "name"，所以属性名是 "name"
+    };
+    console.log(user.name);        // "jack"
+    console.log(user["name"]);     // "jack"
+    console.log(user[propertyName]); // "jack"
+
+    // 3、Symbol可以创建唯一值，用它做对象属性的键，可以保证一定可以创建一个新的属性
+    let propertyName2 = Symbol("随便");
+    let methodName = Symbol("随便");
+
+    // Symbol值独一无二
+    console.log(propertyName2 === methodName); // false
+
+    // 用Symbol值做属性名，做方法名
+    let user2 = {
+        [propertyName2]: "jackson",
+        [methodName](){
+            console.log("这是一个方法");
+        }
+    };
+
+    // 访问属性、调用方法
+    console.log(user2[propertyName2]);
+    user2[methodName]();
+
+</script>
+</body>
+</html>

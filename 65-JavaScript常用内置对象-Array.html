@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script> 
+       // 1、push(element) / pop() - 末尾添加/删除元素
+       let arr = [1,2,3,4,5];
+       console.log(arr);
+       arr.push(6);
+       console.log(arr);
+       arr.pop();
+       console.log(arr);
+
+       // 2、unshift(element1,element2,element3,...) / shift() - 开头添加/删除元素
+       arr.unshift(0); // 开头添加元素0
+       console.log(arr);
+       arr.shift(); // 删除头元素0
+       console.log(arr);
+ 
+       // 3、join(connOperatorStr) - 数组转字符串
+       console.log(arr.join()); // 1,2,3,4,5  默认逗号分隔
+       console.log(arr.join(",")); // 1,2,3,4,5
+       console.log(arr.join("-")); // 1-2-3-4-5
+       
+       // 4、includes(element, fromIndex) - 是否包含某元素
+       console.log(arr.includes(3)); // true
+       console.log(arr.includes(6)); // false
+       console.log(arr.includes(3, 2)); // true
+       console.log(arr.includes(3, 3)); // false
+ 
+       // 5、toReversed()   - 返回反转后的新数组 (ES2023)
+       console.log(arr.toReversed()); // [5,4,3,2,1]
+       
+       // 6、toSorted() - 返回排序后的新数组 (ES2023)
+       console.log(arr.toSorted()); // [1,2,3,4,5] 默认升序
+       console.log(arr.toSorted((a, b) => b - a)); // [5,4,3,2,1] 自定义排序函数降序
+       console.log(arr.toSorted((a, b) => a - b)); // [1,2,3,4,5] 自定义排序函数升序
+
+       // 7、slice(startIndex, endIndex) - 返回子数组（包含 startIndex，不包含 endIndex）
+       console.log(arr.slice(2, 4)); // [3,4]
+       
+       // 8、splice(startIndex, deleteCount, replaceElement, replaceElement, ..., addElement, addElement, ...) - 删除/替换/添加元素
+       arr.splice(2, 2, 6, 7);
+       console.log(arr); // [1,2,6,7,5]
+
+       // 9、map() - 映射数组（返回一个新数组对象）
+       console.log(arr.map((x) => x * 2)); // [2,4,12,14,10]
+       console.log(arr.map((x, i) => i + x * 2)); // [2,5,14,17,14] 索引i + 元素x * 2
+
+       // 10、filter() - 过滤数组（返回一个新数组对象）
+       console.log(arr.filter((x) => x > 3)); // [6,7,5]
+
+       // 11、find() / findIndex() - 查找元素（返回第一个匹配的元素/元素下标）
+       console.log(arr.find((x) => x > 3)); // 6
+       console.log(arr.findIndex((x) => x > 3)); // 2
+
+       // 12、some() - 查看数组中是否包含满足某个条件的元素。如果包含返回 true，如果不包含返回 false
+       console.log(arr.some((x) => x > 3)); // true
+       console.log(arr.some((x) => x > 7)); // false
+       
+       // 13、every() - 查看数组中每一个元素是否满足某个条件。如果都满足返回 true，否则返回 false。
+       console.log(arr.every((x) => x > 0)); // true
+       console.log(arr.every((x) => x > 3)); // false   
+
+       // 14、reduce() - 累加器（返回一个值）
+       console.log(arr.reduce((acc, x) => acc + x)); // 21
+       console.log(arr.reduce((acc, x) => acc * x)); // 420
+
+       // 15、forEach() - 遍历数组，对每个元素执行指定的函数。返回 undefined。
+       arr.forEach(x => console.log(x)); // 1,2,6,7,5
+    </script>
+</body>
+</html>

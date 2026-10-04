@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过闭包模拟私有属性</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        闭包可以创建真正的私有变量，外部无法直接访问，只能通过暴露的方法来操作。
+        */
+        function person() {
+            let username = 'jack';
+            return {
+                // 闭包
+                getUsername() {
+                    return username;
+                },
+                // 闭包
+                setUsername(newName) {
+                    username = newName;
+                }
+            };
+        }
+        const p = person();
+        // 这个代码看起来：p对象中是有username属性的
+        console.log(p.getUsername());
+        p.setUsername("lucy");
+        console.log(p.getUsername());
+        // 像私有属性，无法访问
+        console.log(p.username);
+    </script>
+</body>
+
+</html>

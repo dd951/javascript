@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM元素遍历与父元素查找示例</title>
+</head>
+
+<body>
+
+    <!-- 示例1：遍历子元素 -->
+    <h2>遍历子元素示例</h2>
+    <ul id="my-list">
+        <li>项目 1</li>
+        <li>项目 2</li>
+        <li>项目 3</li>
+        <li>项目 4</li>
+    </ul>
+
+    <!-- 示例2：查找父元素 -->
+    <h2>查找父元素示例</h2>
+    <div id="parent-element">
+        <p>这是一个父元素</p>
+        <div id="child-element">这是一个子元素，点击我会高亮父元素</div>
+    </div>
+
+    <script>
+
+        /*
+        元素的两个属性：
+        - 获取所有的子元素：element.children
+        - 获取当前元素的父元素：element.parentNode
+        */
+
+        // 示例1：遍历子元素
+        let list = document.getElementById('my-list');
+        let items = list.children;
+
+        console.log("遍历子元素:");
+        for (let item of items) {
+            console.log(item.textContent);
+            // 为每个项目添加样式
+            item.style.color = 'blue';
+        }
+
+        // 示例2：查找父元素
+        let child = document.getElementById('child-element');
+
+        // 添加点击事件
+        child.addEventListener('click', function () {
+            let parent = child.parentNode;
+            parent.style.border = '2px solid red';
+            parent.style.padding = '10px';
+            parent.style.backgroundColor = '#f0f0f0';
+
+            console.log("父元素ID:", parent.id);
+        });
+    </script>
+</body>
+
+</html>

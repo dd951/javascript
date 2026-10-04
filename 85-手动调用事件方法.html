@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- value="jackson" 表示在输入框中默认有jackson -->
+    <form action="http://localhost:8080/user/save">
+        用户名：<input type="text" name="username" value="jackson" />
+        <button id="submitBtn">提交</button>
+    </form>
+
+    <script>
+        // 3秒后自动提交
+        setTimeout(function () {
+            document.querySelector("#submitBtn").click(); // 调用 DOM 的固有方法触发事件的同时会执行浏览器的默认行为。
+        }, 3000);
+    </script>
+</body>
+
+</html>

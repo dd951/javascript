@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数参数</title>
+</head>
+<body>
+<script>
+    /*
+        可以接受零个或多个参数
+        参数可以有默认值（ES6+）
+        可以使用剩余参数（...）处理不定数量参数
+     */
+
+    function logger(message, level = 'info'){
+        console.log(`${level}:${message}`);
+    }
+    // 调用函数
+    logger('用户正在登录');
+
+    function sum(...numbers) {
+        let result = 0;
+        for(let i = 0; i < numbers.length; i++){
+            result += numbers[i];
+        }
+        return result;
+    }
+    console.log(sum(1, 2, 3, 4, 5)); // 15
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie记住登录状态</title>
+</head>
+
+<body>
+    <button id="loginBtn">登录</button>
+    <button id="checkLoginBtn">检查是否已经登录</button>
+    <button id="logoutBtn">退出登录</button>
+    <div id="tipMsg"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('#loginBtn').addEventListener('click', function () {
+                // 7天后过期
+                const expires = new Date();
+                expires.setDate(expires.getDate() + 7);
+                // 设置cookie
+                document.cookie = `username=admin; expires=${expires.toUTCString()}; path=/`;
+                document.querySelector('#tipMsg').textContent = '登录成功';
+            });
+            document.querySelector('#checkLoginBtn').addEventListener('click', function () {
+                let cookies = document.cookie;
+                let isLogin = false;
+                if (cookies) {
+                    cookies = cookies.split('; ');
+                    const usernameCookie = cookies.find(cookie => cookie.startsWith('username='));
+                    if (usernameCookie) {
+                        const username = usernameCookie.split('=')[1];
+                        isLogin = true;
+                        document.querySelector('#tipMsg').textContent = `您已经登录了哦！欢迎您${username}`;
+                    }
+                }
+                if (!isLogin) {
+                    document.querySelector('#tipMsg').textContent = '您还没有登录哦！';
+                }
+            });
+            document.querySelector('#logoutBtn').addEventListener('click', function () {
+                // 设置过期
+                document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+            });
+        });
+    </script>
+</body>
+
+</html>

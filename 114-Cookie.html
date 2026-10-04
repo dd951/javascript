@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+</head>
+<body>
+    <script>
+        /* 什么是Cookie
+        - Cookie 是存储在用户浏览器中的小型文本数据（键值对），前端可以生成，后端服务器也可以生成，
+        后端生成后通过响应的方式发送给浏览器，最终 Cookie 被保存在浏览器客户端上。
+        */
+
+        // 1、在JS代码中设置Cookie
+        /*
+        - username=John：键值对。
+        - expires：过期时间（不设置则关闭浏览器后失效）。
+        - path=/：Cookie 的作用路径（默认当前页面路径）。
+        */
+        document.cookie = "username=John; expires=Oct, 18 Dec 2026 12:00:00 UTC; path=/";
+        document.cookie = 'productId=p001';
+
+        // 2、使用JS代码读取Cookie
+        // - 返回格式："key1=value1; key2=value2"，需手动解析。
+        console.log(document.cookie); // 输出所有 Cookie（字符串形式）
+
+        // 3、使用JS代码删除Cookie
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    </script>
+</body>
+</html>

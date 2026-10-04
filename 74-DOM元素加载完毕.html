@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM元素加载完毕</title>
+</head>
+<body>
+
+    <button id='myButton'>点击我</button>
+    <button id='myButton2'>点击我2</button>
+
+
+    <script>
+        /*
+        实际开发中，为了保证为 DOM 元素成功绑定事件，通常在 DOM 元素全部加载完毕后，
+        执行绑定代码。在 JS 中 DOM 元素加载完毕的事件包括：
+        */
+        // 1. load：页面或资源加载完成
+        window.onload = function(){ // 传统的 DOM 0 级事件绑定（属性赋值方式）
+            const btn = document.getElementById('myButton');
+            btn.addEventListener('click', function(){
+                console.log('按钮被点击了');
+            });
+        }
+
+        // 2. DOMContentLoaded：DOM 加载完成（不等待图片等资源），现代开发中推荐使用它。load 作为了解。
+        document.addEventListener('DOMContentLoaded', function(){
+            const btn = document.getElementById('myButton2');
+            btn.addEventListener('click', function(){
+                console.log('按钮被点击了!!');
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量的赋值和基本使用</title>
+</head>
+<body>
+
+
+<script>
+    let a = 10; // 数字
+    console.log(a);
+    let b = 'hello'; // 字符串
+    console.log(b);
+    let c = true; // 布尔值
+    console.log(c);
+    let d = null; // 空值 被明确赋值为空-有意的
+    console.log(d);
+    let e = undefined; // 未定义 还没有被赋值-意外的
+    console.log(e);
+
+    // 一行声明多个变量
+    let f = 100, g = 'hello', h = true;
+    console.log(f, g, h);
+    console.log(f); // 100
+    // console.log(window.f); // undefined - let 声明的对象没有挂载到 window 对象上
+
+    // 变量的使用
+    let price = 100;
+    let quantity = 2;
+    let total = price * quantity;
+    console.log(total); // 200
+
+    // 变量重新赋值
+    let score = 80;
+    score = 90; // 合法（使用 let 声明）
+    console.log(score); // 90
+    score = score + 10;
+    console.log(score); // 100
+
+    // 变量交换-数组解构语法
+    let first = 'A', second = 'B';
+    [first, second] = [second, first];
+    console.log(first, second); // B A
+
+    // 解构赋值 - 作用是从数组中快速提取值并赋值给变量
+    const [x, y] = [10, 20];
+    console.log(x, y); // 10 20
+
+    // 对象解构语法
+    const user = {
+        name: 'jack',
+        age: 18
+    };
+    const { name, age } = user;
+    console.log(name, age); // jack 18
+</script>
+</body>
+</html>

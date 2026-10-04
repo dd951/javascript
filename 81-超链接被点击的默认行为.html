@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超链接被点击的默认行为</title>
+</head>
+
+<body>
+
+    <a href="https://www.baidu.com" id="goBaiDu">百度</a>
+    
+    <script>
+        /*
+        当点击超链接的时候，首先会触发超链接的鼠标单击事件，当超链接的 click 事件发生后，
+        浏览器会有默认行为：向 web 服务器发送请求。如果你想阻止浏览器的这个默认行为可以
+        调用：event.preventDefault();
+        */
+        const goBaiDu = document.getElementById('goBaiDu');
+        goBaiDu.addEventListener('click', function (event) {
+            console.log(`${event.target.textContent}被点击了`);
+            // 事件可以正常发生，但只要执行以下代码，浏览器的默认行为就会被阻止
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

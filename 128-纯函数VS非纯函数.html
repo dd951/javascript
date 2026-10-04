@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯函数VS非纯函数</title>
+</head>
+<body>
+    <script>
+        /* 
+        纯函数（以下是纯函数的特点）
+        1. 只要传入的参数（输入）相同，函数就一定会返回相同的结果（输出），不会有任何意外情况。值是稳定的。
+        2. 只依赖输入参数，不依赖外部变量（全局变量、外层作用域变量等）。
+        3. 不会修改外部状态（不改变全局变量、不修改传入的参数、不执行 I/O 操作等）。
+        */
+
+        // 纯函数
+        function square(x) {
+        return x * x;
+        }
+
+        console.log(square(10));
+        console.log(square(10));
+        console.log(square(10));
+
+        // 非纯函数
+        // let taxRate = 0.1;
+        let taxRate = 0.2;
+        function calculateTax(amount) {
+        return amount * taxRate; // 依赖外部状态
+        }
+
+        console.log(calculateTax(100));
+        console.log(calculateTax(100));
+        console.log(calculateTax(100));
+    </script>
+</body>
+</html>

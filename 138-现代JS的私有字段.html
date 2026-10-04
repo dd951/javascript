@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代JS的私有字段</title>
+</head>
+
+<body>
+    <script>
+        // 现代 JavaScript 已经支持真正的私有字段（使用 # 前缀）
+        class User {
+            #age;  // 真正的私有字段
+
+            constructor(name, age) {
+                this.name = name;
+                this.#age = age;
+            }
+
+            get age() {
+                return this.#age;
+            }
+
+            set age(newAge) {
+                if (newAge > 0) {
+                    this.#age = newAge;
+                }
+            }
+        }
+
+        const user = new User('Charlie', 40);
+        console.log(user.name);     // Charlie
+        // console.log(user.#age);     // SyntaxError: Private field '#age' must be declared in an enclosing class
+        console.log(user.age); // 40
+        user.age = 45;
+        console.log(user.age); // 45
+
+        /* 
+        这三种封装方法各有优缺点，约定方法最简单但不强制，闭包方法最灵活但可能影响性能，
+        私有字段语法最标准但需要较新的 JavaScript 环境支持。
+        */
+
+    </script>
+</body>
+
+</html>

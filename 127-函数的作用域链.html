@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的作用域链</title>
+</head>
+<body>
+    <script>
+        /* 
+        在JavaScript中，作用域链的工作方式是：内层函数可以访问外层函数的变量，
+        但外层函数不能访问内层函数的变量。
+        */
+
+        function a(){
+            let aVar = 'a函数中的变量';
+            function b(){
+                console.log(`在b函数中可以访问a函数中的变量：${aVar}`);
+                let bVar = 'b函数中的变量';
+                console.log(`在b函数中当然可以访问b函数中的变量：${bVar}`);
+            }
+            // 调用函数b
+            b();
+            // console.log(`在a函数中无法访问b函数中的变量，这样会报错：${bVar}`);
+        }
+        // 调用函数a
+        a();
+    </script>    
+</body>
+</html>

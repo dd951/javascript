@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包的形成</title>
+</head>
+<body>
+    <script>
+        /* 
+        通俗理解：闭包就像是一个背包，当一个函数出生时，它会随身携带一个背包，
+        里面装着它出生时周围的所有变量。
+        核心特点：函数可以记住并访问它被创建时的作用域，即使这个函数在其他地方执行
+        生活比喻：就像你搬家到另一个城市，但仍然记得老家的方言和习惯。
+        */
+
+        function createGreeter(greeting) {
+        // 内部函数使用了外部函数的变量，这样的内部函数可以看做是一个闭包
+            return function(name) {
+                console.log(`${greeting}, ${name}!`);
+            };
+        }
+
+        // 内部函数出生：sayHello、sayHi就是出生的新函数的名字。
+        const sayHello = createGreeter("Hello");
+
+        // createGreeter函数在上面已经执行结束了
+        // 但调用内部函数的时候，内部函数还可以继续使用当时出生时的外部函数的变量。
+        sayHello("Alice"); // "Hello, Alice!"
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        在 JavaScript 中，没有真正的私有属性（直到 ES2019 的 # 私有字段语法），
+        但可以通过约定和闭包来模拟。
+        */
+        /*class User {
+            constructor(name, age) {
+                this.name = name;    // 公开属性
+                this._age = age;     // "私有"属性（约定）
+            }
+
+            getAge() {
+                return this._age;
+            }
+
+            setAge(newAge) {
+                if (newAge > 0) {
+                    this._age = newAge;
+                }
+            }
+        }
+        
+        const user = new User('Alice', 30);
+        console.log(user.name);     // 可以直接访问
+        console.log(user._age);     // 也可以访问，但约定不应该这样做
+        console.log(user.getAge()); // 应该通过方法访问
+        */
+
+        /* 
+        以上代码在 ES6 之后引入了新的语法，代码如下：
+        setter 方法前添加 set 关键字，getter 方法前添加 get 关键字
+        给属性赋值时：setter 方法自动执行。
+        读取属性值是：getter 方法自动执行。
+        */
+        class User {
+            constructor(name, age) {
+                this.name = name;    // 公开属性
+                this._age = age;     // "私有"属性（约定）
+            }
+            // getter
+            get age() {
+                console.log('获取年龄');
+                return this._age;
+            }
+            // setter
+            set age(newAge) {
+                console.log('设置年龄');
+                if (newAge > 0) {
+                    this._age = newAge;
+                }
+            }
+        }
+
+        const user = new User('Alice', 30);
+
+        user.age = 30; // 通过setter方法给属性赋值
+        console.log(user.age); // 通过getter方法访问
+
+
+
+    </script>
+</body>
+
+</html>

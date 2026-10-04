@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>派发自定义事件</title>
+</head>
+
+<body>
+
+    <button id="btn">click me</button>
+
+    <script>
+        const btn = document.getElementById("btn");
+        btn.addEventListener("myEvent", function (event) {
+            console.log(event.detail.message);
+        });
+
+        /* 
+        1. CustomEvent 直接继承自 Event（浏览器内部实现，无需开发者手动继承）
+        2. CustomEvent 拥有 Event 的所有特性，并扩展了 detail 属性（属性名有要求：必须是 detail），用于传递自定义数据（普通 Event 没有此属性）。
+        3. 兼容 Event 的所有配置，支持 bubbles、cancelable 等标准事件选项
+        */
+
+        // 创建自定义的事件对象
+        const myEvent = new CustomEvent("myEvent", {
+            bubbles: true, // 事件是否冒泡
+            cancelable: true, // 事件能否被取消
+            detail: {
+                message: "这是一个自定义的事件",
+            },
+        });
+        // 派发事件
+        btn.dispatchEvent(myEvent); // 触发事件 - 这行代码在页面加载时就立即执行了
+    </script>
+</body>
+
+</html>

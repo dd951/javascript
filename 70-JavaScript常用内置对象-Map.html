@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript常用内置对象-Map</title>
+</head>
+<body>
+    <script>
+        // 1、new Map()- 创建 Map 集合
+        let map = new Map();
+        map.set('name', '张三');
+        map.set('age', 18);
+        map.set('sex', '男');
+        console.log(map);
+
+        // 2、set(k, v) / get(k) - 设置/获取值
+        console.log(map.set('name', '李四'));
+        console.log(map.get('name')); // 李四
+        console.log(map.get('age')); // 18
+        console.log(map.get('sex')); // 男
+        
+        // 3、has(k) - 检查键是否存在
+        console.log(map.has('name')); // true
+        console.log(map.has('age')); // true
+        console.log(map.has('sex')); // true
+        console.log(map.has('height')); // false
+        
+        // 4、delete(k) - 删除键值对
+        console.log(map.delete('age'));
+        console.log(map.has('age')); // false
+        
+        // 5、clear() - 清空Map
+        map.clear();
+        console.log(map.size); // 0
+
+        // 6、size - 键值对数量（不是 size()方法，是 size 属性。）
+        console.log(map.size); // 0
+        
+        // 7、keys() - 获取所有的键
+        let studentMap = new Map();
+        studentMap.set('name', '小明');
+        studentMap.set('age', 18);
+        studentMap.set('sex', '男');
+        console.log(studentMap);
+        console.log(studentMap.keys()); // MapIterator {name, age, sex}
+        
+        // 8、values() - 获取所有的值
+        console.log(studentMap.values()); // MapIterator {小明, 18, 男}
+    </script>
+</body>
+</html>

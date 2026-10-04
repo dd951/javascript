@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环语句</title>
+</head>
+<body>
+<script>
+    // 1、for 循环
+    for (let i = 0; i < 5; i++) {
+        console.log(i);
+    }
+
+    // 2、for...in 循环 (遍历对象属性)
+    const person = {
+        name: '张三',
+        age: 30,
+        job: '工程师'
+    };
+    for (const key in person) {
+        console.log(key, person[key]);
+    }
+
+    // 3、for...of 循环（遍历可迭代对象）
+    const fruits = ['苹果', '香蕉', '橙子'];
+    for (const fruit of fruits) {
+        console.log(fruit);
+    }
+
+    // 4、while 循环
+    let count = 0;
+    while (count < 5) {
+        console.log(count);
+        count++;
+    }
+
+    // 5、do...while 循环
+    let i = 0;
+    do {
+        console.log(i);
+        i++;
+    } while (i < 5);
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie的常见属性</title>
+</head>
+<body>
+    <script>
+        /* 
+        属性	作用	示例
+        expires	设置过期时间	expires=Thu, 18 Dec 2025 12:00:00 UTC
+        max-age	设置存活时间（秒）	max-age=3600（1小时后过期）
+        domain	指定 Cookie 生效的域名	domain=example.com
+        path	指定 Cookie 生效的路径	path=/admin
+        Secure	仅 HTTPS 传输	Secure
+        HttpOnly	禁止 JavaScript 访问（防 XSS）	HttpOnly ❌ 无法用 document.cookie 设置，必须由服务器通过 HTTP 响应头设置。
+        */
+
+        // 一个较完整的设置 cookie 的示例：
+        document.cookie = "username=JohnDoe" + 
+                        "; expires=Fri, 31 Dec 2026 23:59:59 UTC" +  // 过期时间
+                        "; max-age=3600" +                           // 1 小时有效期（优先级高于 expires）
+                        "; domain=.example.com" +                    // 对 example.com 及其子域有效
+                        "; path=/" +                                 // 全站路径可访问
+                        "; Secure";                                  // 仅 HTTPS 传输
+    </script>    
+</body>
+</html>

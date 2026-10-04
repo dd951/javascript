@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>调用函数</title>
+</head>
+<body>
+<script>
+    function sayHello() {
+        console.log('hello world');
+    }
+
+    // 1、直接调用
+    sayHello();
+
+    // 2、作为对象的方法调用
+    const obj = {
+        name: '张三',
+        sayHello: function () { // 老语法
+            console.log('hello');
+        }
+    }
+    obj.sayHello();
+
+    const obj2 = {
+        name: '张三',
+        sayHello () { // 新语法
+            console.log('hello');
+        }
+    }
+    obj2.sayHello();
+
+    // 3、作为构造函数调用
+    function Person(name) {
+        this.name = name;
+    }
+    const p = new Person('张三');
+    console.log(p);
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击复选框时的默认行为</title>
+</head>
+
+<body>
+    <input type="checkbox">
+
+    <script>
+
+        /* 
+        用户点击复选框时发生 click 事件，浏览器的默认行为是：当复选框上发生 click 事件时，
+        复选框将显示对钩。当然，你也可以阻止这个默认行为。
+        */
+        const checkElt = document.querySelector('input');
+        checkElt.addEventListener('click', function (event) {
+            console.log('复选框的click事件发生！');
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

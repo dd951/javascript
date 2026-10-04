@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie与WebStorage的对比</title>
+</head>
+<body>
+    <script>
+        /* 
+        特性	Cookie	localStorage	sessionStorage
+        存储大小	~4KB	~5-10MB	    ~5-10MB
+        生命周期	可设置过期时间	永久存储	会话级存储
+        是否随请求发送	是（影响性能）	否	     否
+        适用场景	会话管理、小数据	长期缓存	临时数据
+
+        如何选择？敏感数据用HttpOnly Cookie，非敏感大数据用localStorage（长期），会话数据用sessionStorage（临时）。
+
+        安全注意事项
+        - Cookie：
+        - 敏感数据应设置 HttpOnly 和 Secure。
+        - 防范 CSRF（使用 SameSite 属性，限制Cookie的发送范围，防止跨站请求自动携带）。
+        - WebStorage：避免存储敏感信息，对用户输入进行转义，防止 XSS。
+        */
+    </script>
+</body>
+</html>

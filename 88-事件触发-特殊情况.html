@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="http://localhost:80/save" method="get">
+        用户名：<input type="text" name="username" value="jack">
+    </form>
+
+    <script>
+
+        /* 
+        form.submit()：只提交表单(表单数据会被提交到服务器)，不触发表单的 submit 事件。
+        */
+
+        // 给form表单绑定submit事件
+        const userForm = document.querySelector('form');
+        userForm.addEventListener('submit', function () {
+            alert('表单提交事件发生了');
+        });
+        // 调用方法提交表单，测试form表单的submit事件是否发生
+        userForm.submit();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单交互</title>
+</head>
+
+<body>
+
+    <!-- 表单 -->
+    <form id="my-form" action="https://www.baidu.com" method="get">
+        <label for="text-input">姓名:</label>
+        <input type="text" id="text-input" name="text-input">
+        <br>
+        <button id="submit-btn">提交</button>
+    </form>
+
+    <!-- 反馈 -->
+    <p id="feedback"></p>
+
+    <script>
+        // 示例1：获取表单输入值
+        document.getElementById('submit-btn').addEventListener('click', function (e) {
+            e.preventDefault(); // 阻止表单默认提交行为
+            let input = document.getElementById('text-input');
+            alert('你输入的名字是: ' + input.value);
+        });
+
+        // 示例2：动态更新输入反馈
+        let textInput = document.getElementById('text-input');
+        let feedback = document.getElementById('feedback');
+        textInput.addEventListener('input', function () {
+            feedback.textContent = '你正在输入: ' + this.value;
+        });
+    </script>
+</body>
+
+</html>

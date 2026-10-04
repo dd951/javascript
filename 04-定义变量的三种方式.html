@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定义变量的三种方式</title>
+</head>
+
+<body>
+
+
+  <script>
+    // 第一种方式 var 传统方式，函数作用域，存在变量提升（现代开发中已不建议使用）
+    var a = 10;
+    console.log(a);
+    // var a = 20; var 可以重复声明变量
+    console.log(a);
+    // var - 函数作用域，存在变量提升-演示
+    function test() {
+      // var 变量提升-在函数内部可以先使用后定义
+      console.log(a2); // undefined
+      if (true) {
+        var a2 = 100;
+      }
+      // var 中是允许的
+      console.log(a2); // 100
+    }
+    test();
+
+    // var - 全局的 var 变量会挂载到 window 对象上
+    var a3 = 200;
+    console.log(window.a3);
+
+    // 第二种方式 let 块级作用域，不存在变量提升，块级作用域：{}内有效
+    let b = 20;
+    // let b = 30; 报错不能重复声明
+    console.log(b);
+
+    function test2() {
+      // console.log(b2); 报错
+      if(true) {
+        let b2 = 200;
+      }
+      // console.log(b2); // 报错，b2 只在 if 语句块内有效
+    }
+    test2();
+
+    // 第三种方式 const 常量，不存在变量提升，不能重新赋值
+    const c = 30;
+    console.log(c);
+    // c = 40; // 报错，const 常量不能重新赋值
+    const user = {
+      name: '张三',
+      age: 18
+    };
+    console.log(user);
+    user.name = '李四'; // 可以修改对象的属性值-因为对象内部属性可以修改
+    console.log(user);
+
+
+  </script>
+</body>
+</html>

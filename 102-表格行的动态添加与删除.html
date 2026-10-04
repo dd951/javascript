@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <input id="name" placeholder="姓名">
+    <input id="age" placeholder="年龄">
+    <button id="addBtn">添加</button>
+
+    <table id="dataTable">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+    </table>
+
+    <script>
+
+        /*
+        - 添加行：表格对象.insertRow()
+        - 行中添加单元格：表格行对象.insertCell()
+        */
+
+        const addBtn = document.getElementById('addBtn');
+        const table = document.getElementById('dataTable');
+
+        addBtn.addEventListener('click', function () {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+
+            if (!name || !age) return;
+
+            const row = table.insertRow();
+            row.insertCell().textContent = name;
+            row.insertCell().textContent = age;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '删除';
+            deleteBtn.onclick = function () {
+                row.remove(); // 删除当前行
+            };
+
+            row.insertCell().appendChild(deleteBtn);
+
+            document.getElementById('name').value = ''; // 清空姓名输入框
+            document.getElementById('age').value = ''; // 清空年龄输入框
+        });
+    </script>
+</body>
+
+</html>

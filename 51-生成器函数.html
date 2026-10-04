@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成器函数</title>
+</head>
+<body>
+<script>
+    // 为了让迭代器写起来更简单，专门为迭代器准备了一个生成器函数，可以大大简化迭代器代码的编写。
+    // 生成器函数是迭代器的语法糖。按照下面代码格式编写，生成器函数会返回一个迭代器。
+
+    // 生成器函数
+    function* generator(){
+        yield 1; // yield 可以理解为 "暂停并返回值"，每次调用迭代器的 .next() 方法时，函数会执行到下一个 yield 处暂停，yield 后面的表达式会被作为返回值。
+        yield 2;
+        yield 3;
+    }
+    // 调用生成器函数，返回迭代器对象
+    const gen = generator();
+    // 通过迭代器对象来取值(根据迭代器协议：所有迭代器对象都有next()方法，并且next()方法的
+    // 执行结果是一个含有value和done属性的对象，done为true时表示已迭代完毕。)
+    console.log(gen.next().value);
+    console.log(gen.next().value);
+    console.log(gen.next().value);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM属性操作示例</title>
+</head>
+
+<body>
+    <!-- 示例元素 -->
+    <img id="my-image" src="placeholder.jpg">
+    <a id="my-link" href="https://example.com" target="_blank">示例链接</a>
+
+    <script>
+        // 示例1：获取和设置属性
+        let image = document.getElementById('my-image');
+        console.log('原src:', image.getAttribute('src'));
+
+        image.setAttribute('alt', '这是一张图片描述');
+        console.log('新alt:', image.getAttribute('alt'));
+
+        // 示例2：检查是否有某属性
+        let link = document.getElementById('my-link');
+        if (link.hasAttribute('target')) {
+            console.log('这个链接有target属性');
+        }
+
+        if (!link.hasAttribute('title')) {
+            console.log('这个链接没有title属性');
+        }
+    </script>
+</body>
+
+</html>

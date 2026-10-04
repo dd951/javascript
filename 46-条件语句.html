@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件语句</title>
+</head>
+<body>
+<script>
+    // 1、if 语句
+    const age = 30;
+    if (age >= 18) {
+        console.log('成年人');
+    } else {
+        console.log('未成年人');
+    }
+
+    // 2、if...else 语句
+    const score = 80;
+    if (score >= 90) {
+        console.log('优秀');
+    } else if (score >= 80) {
+        console.log('良好');
+    } else if (score >= 70) {
+        console.log('中等');
+    } else {
+        console.log('不及格');
+    }
+
+    // 3、switch 语句
+    const day = 3;
+    switch (day) {
+        case 1:
+            console.log('星期一');
+            break;
+        case 2:
+            console.log('星期二');
+            break;
+        case 3:
+            console.log('星期三');
+            break;
+        case 4:
+            console.log('星期四');
+            break;
+        case 5:
+            console.log('星期五');
+            break;
+        case 6:
+            console.log('星期六');
+            break;
+        case 7:
+            console.log('星期日');
+            break;
+        default:
+            console.log('未知日期');
+            break;
+    }
+
+</script>
+</body>
+</html>

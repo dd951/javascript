@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <button onclick="addRow()">添加行</button>
+    <button onclick="saveData()">保存</button>
+    
+    <table border="1" id="table">
+        <tr>
+            <td contenteditable>张三</td><!--  contenteditable属性：可编辑 -->
+            <td contenteditable>25</td>
+            <td><button onclick="this.parentElement.parentElement.remove()">删除</button></td>
+        </tr>
+        <tr>
+            <td contenteditable>李四</td>
+            <td contenteditable>30</td>
+            <td><button onclick="this.parentElement.parentElement.remove()">删除</button></td>
+        </tr>
+    </table>
+
+    <script>
+        function addRow() {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td contenteditable></td>
+                <td contenteditable></td>
+                <td><button onclick="this.parentElement.parentElement.remove()">删除</button></td>
+            `;
+            document.getElementById('table').appendChild(row);
+        }
+        
+        function saveData() {
+            const rows = document.querySelectorAll('#table tr'); //  #table tr 选择器：选择id为table的表格中的所有tr元素
+            const data = [];
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells[0].textContent) {
+                    data.push({
+                        name: cells[0].textContent,
+                        age: cells[1].textContent
+                    });
+                }
+            });
+            
+            console.log('保存的数据:', data);
+            alert('数据已保存到控制台');
+        }
+    </script>
+</body>
+</html>

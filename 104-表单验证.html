@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form id="form">
+        <input type="text" id="username" placeholder="用户名">
+        <div id="userError" style="color:red;display:none">用户名只能包含字母数字_$</div>
+        
+        <input type="password" id="password" placeholder="密码">
+        <div id="passError" style="color:red;display:none">密码至少8位且包含大小写字母和数字</div>
+        
+        <input type="password" id="confirm" placeholder="确认密码">
+        <div id="confirmError" style="color:red;display:none">密码不一致</div>
+        
+        <button type="submit">注册</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const confirm = document.getElementById('confirm');
+        
+        function validateUsername() {
+            const valid = /^[a-zA-Z0-9_$]+$/.test(username.value);
+            document.getElementById('userError').style.display = valid ? 'none' : 'block';
+            return valid;
+        }
+        
+        function validatePassword() {
+            const hasUpper = /[A-Z]/.test(password.value);
+            const hasLower = /[a-z]/.test(password.value);
+            const hasNumber = /[0-9]/.test(password.value);
+            const valid = password.value.length >= 8 && hasUpper && hasLower && hasNumber;
+            document.getElementById('passError').style.display = valid ? 'none' : 'block';
+            return valid;
+        }
+        
+        function validateConfirm() {
+            const valid = password.value === confirm.value;
+            document.getElementById('confirmError').style.display = valid ? 'none' : 'block';
+            return valid;
+        }
+        
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            if (validateUsername() && validatePassword() && validateConfirm()) {
+                alert('注册成功！');
+                form.reset(); // 将所有表单控件的值恢复到 HTML 中定义的初始值
+            }
+        };
+        
+        // 实时验证 
+        username.oninput = validateUsername; // 没加括号，直接赋值函数本身（参考 73-事件绑定），给每个输入框绑定了 input 事件，实现实时验证——用户每输入一个字符，就立刻调用对应的验证函数
+        password.oninput = validatePassword;
+        confirm.oninput = validateConfirm;
+    </script>
+</body>
+</html>

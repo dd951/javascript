@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可选链运算符</title>
+</head>
+<body>
+<script>
+    // 可选链运算符（?.）如果我们想要安全地访问user的address的street属性，我们可以使用可选链运算符：
+    let user = {
+        name: '张三',
+        age: 30,
+        address: {
+            street: '北京市海淀区'
+        },
+        getName: function() {
+            return this.name;
+        }
+    }
+
+    const street = user.address?.street;
+    console.log(street);
+
+    // 如果 getName 是一个函数并且存在则正常执行。反之立即返回undefined，而不会抛出错误。
+    const name = user.getName?.();
+    console.log(name);
+
+
+</script>
+</body>
+</html>

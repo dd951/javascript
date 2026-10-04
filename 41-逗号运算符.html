@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逗号运算符</title>
+</head>
+<body>
+<script>
+    /*
+     逗号运算符（,）是 JavaScript 中的一个特殊运
+     算符，它允许在一个语句中执行多个表达式，并返
+     回最后一个表达式的值。
+     */
+    // 基本用法
+    let a = (10,20,30);
+    console.log(a); // 30
+
+    // 在变量声明中使用
+    let x = 1, y = 2, z = 3; // 这是变量声明列表，不是逗号运算符
+    let a2 = (x++, y++, z++); // 这才是逗号运算符
+    console.log(a2); // 3（z++的返回值）
+    console.log(x, y, z); // 2, 3, 4  （这里的逗号不是逗号运算符，是参数分隔符。）
+
+    // 在return中使用
+    function test() {
+        return (console.log('A'), console.log('B'), 'Result');
+    }
+    console.log(test());
+    // 输出：
+    // A
+    // B
+    // Result
+
+    // 在箭头函数中简化代码
+    const process = (a, b) => (console.log(a), console.log(b), a + b);
+    console.log(process(2, 3));
+    // 输出：
+    // 2
+    // 3
+    // 5
+
+    // 如果不简化
+    const process2 = (a, b) => {
+        console.log(a);
+        console.log(b);
+        return a + b;
+    };
+    console.log(process2(2, 3));
+    // 输出：
+    // 2
+    // 3
+    // 5
+</script>
+</body>
+</html>

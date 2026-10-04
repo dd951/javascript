@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript常用全局函数-数值处理函数</title>
+</head>
+<body>
+<script>
+    // 1、parseInt() 将字符串转为整数类型
+    console.log(parseInt('123')); // 123
+    console.log(parseInt('123abc')); // 123
+    console.log(parseInt('abc123')); // NaN
+
+    // 2、parseFloat() 字符串转浮点数
+    console.log(parseFloat('3.14cm')); // 3.14
+
+    // 3、isNaN() 检查是否为NaN
+    console.log(isNaN(123)); // false
+    console.log(isNaN(NaN)); // true
+
+    // 4、isFinite() 检查是否为有限数字
+    console.log(isFinite(3.14233939393993939)) // true
+    console.log(isFinite(Infinity)) // false
+
+
+
+</script>
+</body>
+</html>

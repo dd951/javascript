@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object的常用方法</title>
+</head>
+
+<body>
+    <script>
+        // 1、Object.keys(obj) 返回对象的可枚举属性键
+        const obj = {
+            name: "张三",
+            age: 18,
+            sex: "男"
+        }
+        const keys = Object.keys(obj)
+        console.log(keys)
+
+        // 2、Object.values(obj) 返回对象的可枚举属性值
+        const values = Object.values(obj)
+        console.log(values)
+
+        // 3、Object.entries(obj) 返回对象的可枚举属性键值对
+        const entries = Object.entries(obj)
+        console.log(entries)
+
+        // 4、Object.freeze(obj) 冻结对象 - 冻结对象后，对象的属性不能被修改，也不能被添加
+        Object.freeze(obj)
+        obj.name = "李四"
+        console.log(obj)
+        // 输出：{name: "张三", age: 18, sex: "男"}
+        // 因为对象被冻结了，所以不能修改属性，也不能添加属性
+
+        // Object.freeze(obj) - 可以用于创建一个真正的常量
+        const constants = Object.freeze({
+            PI: 3.1415926,
+            MAX_USER: 1000
+        })
+        constants.PI = 3.14; // 修改不了
+        constants.MAX_USER = 1000 // 修改不了
+        console.log(constants.PI, constants.MAX_USER);
+
+        console.log("====================================================")
+        // 5、Object.defineProperty(obj, prop, descriptor) - 在对象上定义新属性或修改现有属性
+        // 类的定义
+        class User {
+            constructor(age) {
+                this._age = age;
+            }
+        }
+
+        // 创建对象
+        let user = new User(20);
+
+        // 给user对象添加age属性，并且设置当读取该属性的值和修改该属性的值时添加拦截规则
+        // 当然，如果user对象本身已经存在age属性，以下代码则是对age属性进行修改而非添加
+        Object.defineProperty(user, 'age', {
+            get() {
+                console.log('读取属性age的值');
+                return this._age;
+            },
+            set(newValue) {
+                console.log('修改属性age的值');
+                this._age = newValue;
+            }
+        });
+
+        // 读取user对象age属性的值
+        console.log(`年龄=${user.age}`);
+        // 修改user对象age属性的值
+        user.age = 30;
+        // 读取user对象age属性的值
+        console.log(`年龄=${user.age}`);
+
+        // 6、- Object.hasOwn(obj, prop)  - 判断对象 obj 中是否存在 prop 属性。替代 obj.hasOwnProperty(prop) (ES2022)
+        console.log(user);
+        console.log(Object.hasOwn(user, 'age'));
+        // 输出：true
+        console.log(Object.hasOwn(user, 'name'));
+        // 输出：false
+    </script>
+</body>
+
+</html>

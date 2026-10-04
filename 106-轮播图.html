@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <!-- overflow:hidden 隐藏超出容器范围的内容-->
+    <div style="width:400px;overflow:hidden">
+        <!-- transition:0.5s 作用：让样式变化有过渡动画效果 -->
+        <div id="slider" style="display:flex;transition:0.5s">
+            <img src="https://picsum.photos/400/300?1" style="width:400px">
+            <img src="https://picsum.photos/400/300?2" style="width:400px">
+            <img src="https://picsum.photos/400/300?3" style="width:400px">
+        </div>
+    </div>
+    
+    <script>
+        let index = 0;
+        const slider = document.getElementById('slider');
+        // 获取图片的个数
+        const total = slider.children.length;
+        
+        function next() {
+            index = (index + 1) % total;
+            // transform样式的作用：平移
+            // translateX(100px) 右平移100px
+            // translateX(-100px) 左平移100px
+
+            // index=0 → translateX(0px)      // 起始位置
+            // index=1 → translateX(-400px)   // 左移400px【相对于原始起点左移】
+            // index=2 → translateX(-800px)   // 左移800px【相对于原始起点左移】 
+            // index=0 → translateX(0px)      // 回到起始位置
+            slider.style.transform = `translateX(-${index * 400}px)`;
+        }
+        
+        // 自动轮播
+        setInterval(next, 3000);
+    </script>
+</body>
+</html>

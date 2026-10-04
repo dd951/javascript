@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端document.cookie的访问权限规则</title>
+</head>
+<body>
+    <script>
+        /* 
+        1. Cookie 设置了 HttpOnly
+        - Cookie 的 HttpOnly 标志只能由服务端设置。（服务器会在响应头中设置 HttpOnly 标志，响应头的格式：Set-Cookie: cookie名称=cookie值; HttpOnly）
+        - 如果服务器创建了 Cookie，并且设置了 Cookie 的HttpOnly 标志，将来 Cookie 响应到前端后，在前端通过 document.cookie 是完全无法读取的
+        - 这是专门为防止XSS攻击设计的安全特性
+        2. 未设置Domain（域名）的Cookie
+        - 假设你在 www.example.com域名下生成的 Cookie，并且没有手动设置 Cookie 的 Domain 属性。
+        - 那你只能在完全相同的域名下才能使用 document.cookie 访问该 Cookie。必须是完全相同的域名，子域名则不行。
+        - www.example.com可以访问
+        - www.example.com/user/login可以访问
+        - blog.example.com不可以访问
+        3. 设置了Domain的Cookie
+        - 可在指定域名及其所有子域名下通过 document.cookie 读取
+        - 示例：设置 domain=.example.com 后，在 www.example.com、api.example.com 都能访问
+        4. Path路径限制
+        - 如果创建 Cookie 时指定了 Path 属性，则只能在指定路径及其子路径下通过 document.cookie 访问
+        - 示例：设置 path=/admin 后，只有在 /admin/* 路径下的页面才能读取
+        - 如果没有设置 path，默认值是 path=/
+        */
+    </script>
+</body>
+</html>

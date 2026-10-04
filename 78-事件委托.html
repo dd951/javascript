@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托</title>
+</head>
+
+<body>
+
+    <!-- 写法一    
+     <ul id="myList">
+        <li>项目1</li>
+        <li>项目2</li>
+        <li>项目3</li>
+    </ul> -->
+
+    <!-- 写法二 -->
+    <ul id="myList">
+        <li class="myItem">项目1</li>
+        <li class="myItem">项目2</li>
+        <li class="myItem">项目3</li>
+    </ul>
+
+    <script>
+        /*
+        利用冒泡机制可以实现事件委托(Event Delegation)，将事件处理程序绑定到父元素
+        而非每个子元素（绑定到父元素上，就等于是给它的子孙都绑定了该事件）
+        */
+        /* 写法一  
+        document.getElementById('myList').addEventListener('click', function (event) {
+            if (event.target.tagName === 'LI') {
+                console.log('点击了:', event.target.textContent);
+            }
+        }); */
+
+        // 写法二
+        document.getElementById('myList').addEventListener('click', function (event) {
+            if (event.target.matches('.myItem')) { // matches 方法：原生 DOM 方法，用于检查元素是否匹配指定的 CSS 选择器
+                console.log('点击了:', event.target.textContent);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <button id="btn">元素</button>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+          document.querySelector("#btn").addEventListener('click', function(e){
+            e.target.remove();
+          });
+        });
+    </script>
+</body>
+</html>

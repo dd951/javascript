@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.prototype.toString.call() 检测类型</title>
+</head>
+<body>
+<script>
+    console.log(Object.prototype.toString.call(1)); // '[object Number]'
+    console.log(Object.prototype.toString.call('jack')); // '[object String]'
+    console.log(Object.prototype.toString.call(true)); // '[object Boolean]'
+    console.log(Object.prototype.toString.call(undefined)); // '[object Undefined]'
+    console.log(Object.prototype.toString.call(null)); // '[object Null]'
+    console.log(Object.prototype.toString.call(Symbol('username'))); // '[object Symbol]'
+    console.log(Object.prototype.toString.call(11111111111111111111111n)); // '[object BigInt]'
+
+    const fn = () => {}
+    console.log(Object.prototype.toString.call(fn)); // '[object Function]'
+    console.log(Object.prototype.toString.call([])); // '[object Array]'
+    console.log(Object.prototype.toString.call({})); // '[object Object]'
+</script>
+</body>
+</html>

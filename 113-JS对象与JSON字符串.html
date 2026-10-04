@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON字符串和JS对象互转</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: 'jackson',
+            age: 20,
+            hobbies: ['抽烟', '喝酒', '烫头']
+        };
+        // 1、JS对象转JSON字符串
+        const userJSONStr = JSON.stringify(user);
+        console.log(userJSONStr);
+
+        // 2、JSON字符串转JS对象
+        const userJSONStr2 = '{"username":"jackson","age":20,"hobbies":["抽烟","喝酒","烫头"]}';
+        // 将JSON字符串转换为JS对象
+        const user2 = JSON.parse(userJSONStr2);
+        console.log(user2);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础异常处理语法</title>
+</head>
+<body>
+<script>
+    function riskyOperation() {
+        const num = 10;
+        return num.toUpperCase();
+    }
+
+    // 1、try...catch 语句
+    try {
+        // 可能出错的代码
+        const result = riskyOperation();
+        console.log(result);
+    } catch (error) {
+        // 出错时执行的代码
+        console.log('发生错误:', error.message);
+    }
+
+    // ES6+新语法：try...catch 可选的绑定 (ES2019)
+    try {
+        // 可能抛出异常的代码
+        const result = riskyOperation();
+        console.log(result);
+    } catch {  // 注意：这里没有 error 参数
+        // 仍然可以处理错误，但无法访问错误对象
+        console.log('发生了错误，但不知道具体是什么错误');
+    }
+
+    // 2、finally 语句，finally 块中的代码无论是否发生异常都会执行
+    try {
+        console.log('尝试执行');
+        const data = JSON.parse('无效的JSON'); // JSON.parse() = JSON 字符串 → JavaScript 值
+    } catch (error) {
+        console.log('捕获到错误:', error.message);
+    } finally {
+        console.log('这部分总会执行');
+    }
+
+    // 3、throw 语句
+    function checkAge(age) {
+        if (age < 0) {
+            throw new Error('年龄不能为负数');
+        }
+        if (age < 18) {
+            throw new Error('未满18岁');
+        }
+        return '验证通过';
+    }
+
+    try {
+        checkAge(-5);
+    } catch (error) {
+        console.log(error.message); // "年龄不能为负数"
+    }
+
+</script>
+</body>
+</html>

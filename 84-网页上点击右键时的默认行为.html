@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页上点击右键时的默认行为</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        用户在网页上点击鼠标右键的时候会弹出一个菜单，这也是一种默认行为，想要阻止弹出菜单也是可以的。
+        */
+        document.addEventListener('contextmenu', function (event) {
+            console.log('用户在网页上点击了鼠标右键');
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

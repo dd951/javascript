@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF攻击</title>
+</head>
+<body>
+    <script>
+        /* 
+        一、理解CSRF
+        CSRF 攻击就是通常所说的钓鱼网站。
+        第一步：登录银行
+        - 你在 www.your-bank.com 登录，浏览器保存了银行的Session Cookie。
+        - 关键：这个Cookie的Domain是 .your-bank.com。
+        第二步：访问黑客网站
+        - 黑客给了你一个感兴趣的东西。你很好奇，点击链接访问 www.hacker-site.com。
+        第三步：黑客网站的"小动作"（关键步骤）
+        - 黑客在他的网站 www.hacker-site.com 上放置了这样的代码：
+        <img src="https://www.your-bank.com/transfer?to=hacker&amount=5000" width="0" height="0">
+        第四步：浏览器的"自动行为"（核心机制）
+        - 当浏览器加载黑客网站时，会自动向 www.your-bank.com 发起请求（加载图片或提交表单）。
+        - 发起这个请求时，浏览器会自动携带你在 your-bank.com 域名下的Cookie。
+        - 银行服务器收到请求，看到合法的Session Cookie，就执行了转账操作。
+        */
+    </script>
+
+    <!-- 
+        二、防范CSRF攻击
+        CSRF Token（最常用）
+        - 原理：每个表单或请求都携带一个随机令牌，服务器验证令牌有效性（黑客拿不到这个令牌，自然它发的请求，服务器不认）
+        - 实现：表单中隐藏一个随机Token
+        <form action="/transfer" method="POST">
+        <input type="hidden" name="csrf_token" value="a1b2c3d4e5f6">
+        <input type="text" name="amount">
+        <button>转账</button>
+        </form>
+
+        SameSite Cookie 属性
+        - 原理：限制Cookie的发送范围，防止跨站请求自动携带（黑客网站向银行发送请求时，这样的 Cookie 不会被携带，因为跨站了。）
+        - 跨站怎么理解？发送请求的网站与访问的目标网站不是同一个网站，叫做跨站。
+        - 实现：
+        Set-Cookie: sessionId=abc123; SameSite=Strict
+        - SameSite=Strict：完全禁止跨站发送
+    -->
+</body>
+</html>

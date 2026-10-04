@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>引入JavaScript</title>
+
+  <script>
+    function executeCode() {
+      const script = document.createElement('script');
+      script.src = 'js/scrip.js';
+      document.body.appendChild(script);
+    }
+  </script>
+</head>
+
+<body>
+  <!-- 方式一-html时间属性 -->
+  <!-- <button onclick="alert('按钮被点击')">点击</button> -->
+
+
+  <!-- 方式二-内联方式 -->
+  <!-- <script src="js/外部引用js.js">
+    console.log("内联JavaScript代码"); // <script> 标签如果设置了 src 属性，标签内部的代码会被完全忽略
+  </script> -->
+
+  <!-- 方式三-动态加载引入 -->
+  <input type="button" value="动态加载引入" onclick="executeCode()">
+</body>
+
+</html>

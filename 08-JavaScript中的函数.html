@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript中的函数</title>
+</head>
+<body>
+
+
+<script>
+    sayHello(); // 可以正常运行
+    // 1. 函数声明 - 使用 function关键字声明，会提升，可以在声明前调用
+    function sayHello() {
+        console.log('hello world');
+    }
+    sayHello();
+
+    // 2. 函数表达式 - 将函数赋值给变量，不会提升，只能在定义后调用。
+    // 2.1 匿名函数表达式
+    // sayHello2(); 报错
+    let sayHello2 = function() {
+        console.log('hello world匿名函数表达式');
+    }
+    sayHello2();
+    // 2.2 命名函数表达式
+    let sayHello3 = function say() {
+        console.log('hello world命名函数表达式');
+    }
+    sayHello3();
+    // say(); // say 名字其实意义不大，不能在外部调用。真正暴露给外部的仍然是sayHello3变量。除非你需要在 say 函数中进行递归调用时才有用。因为递归调用需要函数名。
+
+    // 3. 箭头函数（ES6 新增） - 语法简洁，没有自己的 this，不能作为构造函数。
+    let sayHello4 = () => {
+        console.log('hello world箭头函数');
+    }
+    sayHello4();
+
+    const greet = (name) => {
+        console.log(`hello ${name}`);
+    }
+    console.log(greet.name); // greet - 箭头函数只能是匿名函数，它的名字也可以通过变量名.name来获取
+    greet('jack');
+    // 简写形式
+    const greet2 = name => console.log(`hello ${name}`);
+    greet2('rose');
+
+    // 三种函数的区别
+    // https://www.yuque.com/yuqueyonghu-kcqfqj/ahr71l/ghbg8y7aoi7al5tl?inner=OjmH9
+
+</script>
+</body>
+</html>

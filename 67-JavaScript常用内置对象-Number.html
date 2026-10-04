@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number对象</title>
+</head>
+<body>
+    <script>
+        // 1、toFixed() - 保留小数位数 四舍五入
+        console.log(123.456.toFixed(2)); // "123.46"
+        console.log(123.444.toFixed(2)); // "123.44"
+
+        // 2、Number.isNaN(value) - 这个 value 是否是数值类型的 NaN，只有 value 是数值类型的 NaN 时，结果才是 true，其它情况一律 false。
+        console.log(Number.isNaN(NaN)); // true
+        console.log(Number.isNaN(123)); // false
+        console.log(Number.isNaN("123")); // false
+        console.log(Number.isNaN(true)); // false
+        console.log(Number.isNaN(null)); // false
+        console.log(Number.isNaN(undefined)); // false
+        console.log(Number.isNaN({})); // false
+        console.log(Number.isNaN([])); // false
+        console.log(Number.isNaN(function() {})); // false
+    </script>
+</body>
+</html>

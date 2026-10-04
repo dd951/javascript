@@ -1,0 +1,1 @@
+export const isEmail = (str) => { console.log(str) };

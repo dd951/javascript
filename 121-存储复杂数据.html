@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>存储复杂数据（JSON转换）</title>
+</head>
+
+<body>
+    <script>
+        const user = { name: "John", age: 30 };
+
+        // 存储对象（需转为 JSON）
+        localStorage.setItem('user', JSON.stringify(user));
+
+        // 读取对象（解析 JSON）
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        console.log(storedUser.name); // "John"
+    </script>
+</body>
+
+</html>

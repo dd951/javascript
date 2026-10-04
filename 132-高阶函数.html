@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高阶函数</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        函数式编程之高阶函数
+        定义：什么叫做高阶函数：如果一个函数的参数是函数，或者一个函数的返回值是一个函数，
+        我们把这个函数称为高阶函数。
+        */
+        // 该函数的第一个参数是一个函数，因此 doTwice 被称为高阶函数。
+        function doTwice(func, value) {
+            return func(func(value));
+        }
+
+        function add5(x) {
+            return x + 5;
+        }
+
+        console.log(doTwice(add5, 10)); // 20 (10+5=15, 15+5=20)
+    </script>
+</body>
+
+</html>

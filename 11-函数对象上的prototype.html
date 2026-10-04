@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数对象上的prototype</title>
+</head>
+<body>
+<script>
+    /*
+        任何一个函数对象上都有 prototype 属性。普通对象上没有 prototype属性。
+        假设现在有一个构造函数 User【User 是一个函数对象】，通过它可以创建 User类型
+        的实例，例如 let u = new User();，其中 u 就是一个实例。通过 User.prototype
+        可以获取到 u对象的原型对象（你可以暂且理解为 u 对象的父类对象），当然，我们通
+        过 u.__proto__也可以获取到 u对象的原型对象。
+     */
+
+
+    // User是一个函数，我们称为函数对象。
+    function User(){}
+
+    // 只有函数对象上才有prototype属性
+    let prototype = User.prototype;
+    console.log(prototype);
+
+    let obj = new User();
+    let proto = obj.__proto__;
+    console.log(proto);
+
+    // 放在原型对象上的属性/方法，是所有实例共享的，任何一个实例都可以访问这些共享的属性和方法。
+    let obj2 = new User();
+
+    // 在原型对象上添加一个方法，所有的实例就都有了这个方法。
+    User.prototype.doSome = function(){
+        console.log("do some...");
+    };
+    obj.doSome();
+    obj2.doSome();
+
+    // 在原型对象上添加一个属性，所有的实例就都有了这个属性。
+    User.prototype.username = "jack";
+    console.log(obj.username);
+    console.log(obj2.username);
+
+    // 对于普通对象（非函数对象）来说都有一个私有的__proto__属性。
+    // 普通对象通过该属性可以获取该普通对象的原型对象。
+    // 换句话说：以下代码输出true
+    console.log(User.prototype === obj.__proto__);
+
+    // 也就是说通过某个普通对象也可以给所有对象扩展方法或属性。
+    obj.__proto__.doOther = function () {
+        console.log("do other");
+    };
+    obj.doOther();
+    obj2.doOther();
+</script>
+</body>
+</html>

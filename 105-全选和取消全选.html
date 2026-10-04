@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <input type="checkbox" id="selectAll"> 全选/取消全选
+    <br><br>
+    <input type="checkbox" class="item"> 选项1
+    <input type="checkbox" class="item"> 选项2
+    <input type="checkbox" class="item"> 选项3
+    <input type="checkbox" class="item"> 选项4
+
+    <script>
+        const selectAll = document.getElementById('selectAll');
+        const items = document.querySelectorAll('.item');
+        
+        selectAll.onclick = function() {
+            items.forEach(item => { // 遍历所有选项，设置它们的 checked 属性为全选复选框的 checked 属性
+                item.checked = selectAll.checked;
+            });
+        };
+        
+        items.forEach(item => {
+            item.onclick = function() {
+                selectAll.checked = [...items].every(i => i.checked); // 如果所有选项都被选中，则全选复选框也被选中，否则取消选中 [...items] 将 NodeList 转换为数组，every() 方法检查数组中的每个元素是否满足条件
+            };
+        });
+    </script>
+</body>
+</html>

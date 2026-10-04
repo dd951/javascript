@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String对象</title>
+</head>
+<body>
+    <script>
+        // 1、includes(subStr, fromIndex) - 是否包含子字符串
+        console.log("hello".includes("l")); // true
+        console.log("hello".includes("l", 4)); // false
+        
+        // 2、startsWith(startStr) / endsWith(endStr) - 是否以某字符串开头/结尾
+        console.log("hello".startsWith("h")); // true
+        console.log("hello".endsWith("o")); // true
+        
+        // 3、substring(startIndex, endIndex) / slice(startIndex, endIndex) - 提取子字符串（包含 startIndex，不包含 endIndex）
+        console.log("hello".substring(2, 4)); // "ll"
+        console.log("hello".slice(2, 4)); // "ll"
+        
+        // 4、substr() (已废弃) - 提取子字符串 从 startIndex 开始，提取 length 个字符
+        console.log("hello".substr(2, 2)); // "ll"
+        
+        // 5、split(separator) - 分割字符串
+        console.log("hello".split("")); // ["h", "e", "l", "l", "o"]
+        console.log("h-e-l-l-o".split("-")); // ["h", "e", "l", "l", "o"]
+        
+        // 6、toUpperCase() / toLowerCase() - 大小写转换
+        console.log("hello".toUpperCase()); // "HELLO"
+        console.log("HELLO".toLowerCase()); // "hello"
+        
+        // 7、trim() / trimStart() / trimEnd() - 去除空格
+        console.log(" hello ".trim()); // "hello"
+        console.log(" hello".trimStart()); // "hello"
+        console.log("hello ".trimEnd()); // " hello"
+        
+        // 8、replace(replaceStr)- 如果第一个参数不是正则表达式的话，只替换第一个
+        console.log("hello".replace("l", "L")); // "heLlo"  
+        // 正则表达式替换所有匹配项
+        console.log("hello".replace(/l/g, "L")); // "heLLo"
+        
+        // 9、replaceAll(replaceStr) - 替换所有（ES2021+）
+        console.log("hello".replaceAll("l", "L")); // "heLLo"
+    </script>
+</body>
+</html>

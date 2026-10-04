@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <input id="n" placeholder="姓名">
+    <button onclick="s()">提交</button>
+
+    <script>
+        // 加载草稿
+        const d = localStorage.getItem('d');
+        if (d) document.getElementById('n').value = d;
+
+        // 输入时保存
+        document.getElementById('n').oninput = function () { // oninput 事件：当用户输入时触发
+            localStorage.setItem('d', this.value);
+        };
+
+        // 提交
+        function s() {
+            alert('提交：' + document.getElementById('n').value);
+            localStorage.removeItem('d'); // 提交后删除草稿
+            document.getElementById('n').value = '';
+        }
+    </script>
+</body>
+
+</html>

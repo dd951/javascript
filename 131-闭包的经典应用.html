@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包的经典应用</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        1、数据私有化（模块模式）
+        问题：如何创建真正的私有变量？
+        解决方案：使用闭包
+        */
+        function person() {
+            let username = 'jack';
+            return {
+                // 闭包
+                getUsername() {
+                    return username;
+                },
+                // 闭包
+                setUsername(newName) {
+                    username = newName;
+                }
+            };
+        }
+        const p = person();
+        // 这个代码看起来：p对象中是有username属性的
+        console.log(p.getUsername());
+        p.setUsername("lucy");
+        console.log(p.getUsername());
+        // 像私有属性，无法访问
+        console.log(p.username);
+
+        console.log('=========================');
+        /* 
+        函数工厂
+        应用场景：创建多个功能类似但配置不同的函数
+        */
+        function createMultiplier(factor) {
+            // 闭包
+            return function (number) {
+                return number * factor;
+            };
+        }
+
+        // 创建一个完成两倍的函数。
+        // 内部函数double出生时记住了外部函数的factor=2
+        const double = createMultiplier(2);
+        // 创建一个完成三倍的函数。
+        const triple = createMultiplier(3);
+
+        console.log(double(5)); // 10
+        console.log(triple(5)); // 15
+    </script>
+</body>
+
+</html>

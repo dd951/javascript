@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量的作用域</title>
+</head>
+<body>
+
+<script>
+    // "use strict" 必须放在 <script> 标签内的第一条语句才能生效。
+    // 'use strict' 严格模式（'use strict'） 下，直接给未声明的变量赋值会抛出 ReferenceError - 不允许创建隐式全局变量
+
+
+    // 变量的作用域 - 变量的作用域指的是变量可以被访问的范围
+    let globalVar = "我是全局变量"; // 全局变量
+    var globalVar2 = "我也是全局变量，我会自动挂载到window对象上";
+
+    // 1、全局作用域
+    function test() {
+        console.log(globalVar); // 可以访问
+        console.log(globalVar2); // 可以访问
+        console.log(window.globalVar2); // 可以访问
+    }
+    test();
+
+    // 2、函数作用域 - 使用var声明的变量在函数内部有效
+    function test2() {
+        if (true) {
+            var localVar = "我是函数变量";
+        }
+        console.log(localVar); // var 声明的变量这里可以访问
+    }
+    // console.log(localVar); // 错误、外部无法访问
+    test2();
+
+    // 3、块级作用域 - 使用 let 和 const 声明的变量在块级作用域内有效，var 不能声明块级作用域
+    if (true) {
+        let blockVar = "块级变量";
+        console.log(blockVar); // 可以访问
+    }
+    // console.log(blockVar); // 错误、外部无法访问
+
+    /*
+        4、作用域链规则：
+            内层作用域可以访问外层作用域的变量
+            外层作用域不能访问内层作用域的变量
+            相同作用域中不能重复声明let/const变量
+    */
+    let outer = "外部";
+    function scopeTest() {
+        let inner = "内部";
+        console.log(outer); // 可以访问
+        // let inner = "内部2"; 不能重复声明 let /const 变量
+    }
+    scopeTest();
+    // console.log(inner); // 错误、外部无法访问
+
+    // 5、就近原则 - 变量的访问顺序是先在当前作用域查找，再在外部作用域查找
+    let value = "全局";
+    function printValue() {
+        let value = "局部";
+        console.log(value);
+    }
+    printValue();
+
+    // 6、隐式全局变量 - 如果在函数体内定义变量时没有使用 var、let 或 const 关键字，那么这个变量会被隐式创建为 全局变量，即使它是在函数内部定义的。
+
+    function greet(){
+        // 隐式全局变量
+        username = "jackson";
+    }
+    greet();
+    console.log(username); // jackson
+
+</script>
+</body>
+</html>

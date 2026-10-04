@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>instanceof 检测</title>
+</head>
+<body>
+<script>
+    // instanceof 检测 不适用于基本类型
+    let a1 = {};
+    console.log(a1 instanceof Object);
+
+    let a2 = function () {};
+    console.log(a2 instanceof Function);
+
+    let a3 = [];
+    console.log(a3 instanceof Array);
+
+    let a4 = new Set();
+    console.log(a4 instanceof Set);
+
+    function User() {}
+    let a5 = new User();
+    console.log(a5 instanceof User);
+
+</script>
+</body>
+</html>

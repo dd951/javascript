@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的常用函数式方法</title>
+</head>
+<body>
+    <script>
+        /* 
+        1、map - 数据转换
+        map 方法遍历数组的每个元素，按照你提供的规则转换它们，并返回一个新数组。
+        */
+        const numbers = [1, 2, 3];
+        const squares = numbers.map(x => x * x); // [1, 4, 9]
+        console.log(squares);
+        
+        /* 
+        2、filter - 数据筛选
+        filter 的参数是一个函数，通过这个函数来描述过滤规则。
+        */
+       const numbers2 = [1, 2, 3, 4, 5];
+       evens = numbers2.filter(x => x % 2 === 0); // [2, 4]
+       console.log(evens);
+
+       /* 
+       3、reduce - 数据聚合
+       reduce 的参数是一个函数，通过这个函数来描述累加规则。
+       */
+      const numbers3 = [1, 2, 3, 4];
+      let sum = numbers3.reduce((acc, x) => acc + x, 0); // 10
+      console.log(sum); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义异常</title>
+</head>
+<body>
+<script>
+    // 1、创建自定义异常类
+    // JavaScript 通过继承 Error 类来实现自定义异常：
+    class MyCustomError extends Error {
+        constructor(message, extraInfo) {
+            super(message);  // 调用父类构造函数
+            this.name = 'MyCustomError';  // 设置错误名称
+            this.extraInfo = extraInfo;  // 添加自定义属性
+            this.timestamp = new Date();  // 添加时间戳
+        }
+
+        logError() {
+            console.error(`[${this.timestamp}] ${this.name}: ${this.message}`);
+        }
+    }
+
+    // 2、使用自定义异常类
+    function validateInput(input) {
+        if (!input) {
+            throw new MyCustomError('输入不能为空', { code: 'EMPTY_INPUT' });
+        }
+        if (input.length < 5) {
+            throw new MyCustomError('输入太短', { code: 'TOO_SHORT', minLength: 5 });
+        }
+    }
+
+    try {
+        validateInput('abc');
+    } catch (err) {
+        if (err instanceof MyCustomError) {
+            err.logError();  // 调用自定义方法
+            console.log('额外信息:', err.extraInfo);
+        } else {
+            console.error('其他错误:', err);
+        }
+    }
+</script>
+</body>
+</html>

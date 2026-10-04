@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数科里化</title>
+</head>
+
+<body>
+    <script>
+        // 定义：将多参数函数转换为一系列单参数函数的技术
+
+        // 普通函数
+        function add(a, b, c) {
+            return a + b + c;
+        }
+
+        // 柯里化版本
+        function curryAdd(a) {
+            // 闭包
+            return function (b) {
+                // 闭包
+                return function (c) {
+                    return a + b + c;
+                };
+            };
+        }
+
+        // 使用箭头函数简化
+        const curryAdd2 = a => b => c => a + b + c;
+
+        console.log(curryAdd(1)(2)(3)); // 6
+        console.log(curryAdd2(1)(2)(3)); // 6
+
+        // 实用示例：创建特定功能的函数
+        const add5 = curryAdd(2)(3); // 固定前两个参数s
+        console.log(add5(10)); // 15 (2+3+10)
+    </script>
+</body>
+
+</html>

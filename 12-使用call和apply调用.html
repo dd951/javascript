@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用call和apply调用</title>
+</head>
+<body>
+<script>
+    /*
+    1、显示指定 this 的值
+    JavaScript 函数的 this 默认由调用方式决定
+    （如直接调用时 this 可能是 window 或 undefined）。
+    通过 call 或 apply 可以强制将 this 绑定到特定对象。
+    */
+
+    function sayHello(name){
+        console.log(`hello ${name}, age ${this.age}`)
+    }
+
+    let obj = {age: 20};
+
+    // 将obj指定为sayHello函数的this。
+    sayHello.call(obj, "jackson");
+
+    // 2、通过 call/apply 可以借用其他对象的方法
+    const person1 = {
+        name : 'jack',
+        sayHello(){
+            console.log(`hello ${this.name}`);
+        }
+    }
+    const person2 = {
+        name : 'lucy123'
+    }
+    // person2借助person1的sayHello方法。
+    person1.sayHello.call(person2);
+
+    const arrayLike = { 0: 'a', 1: 'b', length: 2 };
+    // 借用数组的push方法，需要先获取到push方法，通过 Array.prototype.push 来获取数组的push方法
+    // 注意：借用方法不是随随便便借用的，类数组对象  可以借助  普通数组对象上的方法。
+    Array.prototype.push.call(arrayLike, 'c'); // { 0: 'a', 1: 'b', 2: 'c', length: 3 }
+    console.log(arrayLike);
+
+    /*
+        3、call 和 apply 的区别
+        call：参数逐个传递，逗号分隔。
+        apply：参数以数组的形式传递。
+     */
+    // 代码示例
+    function add(a, b){
+        console.log(a + b);
+    }
+    // 用call调用add函数，参数逐个传递
+    add.call(null, 1, 2); // 3
+    // 用apply调用add函数，参数以数组的形式传递
+    add.apply(null, [1, 2]); // 3
+
+</script>
+</body>
+</html>

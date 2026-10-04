@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器环境提供的全局函数-定时器函数</title>
+</head>
+<body>
+    <script>
+        // 1、setTimeout(callback, delay) 延迟执行一次 - 延迟执行指定的代码，指定的时间后执行
+        const timeoutID = setTimeout(() => {
+            console.log("hello world")
+        }, 10000)
+
+        // 2、setInterval(callback, delay) 循环执行 - 定时执行指定的代码，指定的时间间隔执行一次
+        const intervalID = setInterval(() => {
+            console.log("setInterval")
+        }, 2000)
+
+        // 3、clearTimeout(timoutID) 取消 setTimeout - 清除指定的定时器，停止定时器的执行
+        clearTimeout(timeoutID)
+
+        // 4、clearInterval(timoutID) 取消 setInterval - 清除指定的定时器，停止定时器的执行
+        // 4秒后执行
+        setTimeout(() => {
+            clearInterval(intervalID)
+        }, 5000)
+    </script>
+</body>
+</html>

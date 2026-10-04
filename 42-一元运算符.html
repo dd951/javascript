@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一元运算符</title>
+</head>
+<body>
+
+<!-- 点击这个链接不会跳转，而是执行 JS 代码 -->
+<a href="javascript:void(0);" onclick="alert('哈哈，页面没有跳转！');">
+    点我试试
+</a>
+
+<script>
+    /* 一、delete 运算符用于删除对象的属性或数组的元素。它的主要作用是移除对象
+     中指定的属性，如果删除成功会返回 true，否则返回 false
+     特点：
+        1. 用于删除对象的属性
+        2. 删除成功后返回 true
+        3. 不能删除变量、函数或不可配置的属性
+        4. 删除数组元素时，会将该位置变为 empty（长度不变）
+     */
+
+    // 1、删除对象属性
+    const person = {
+        name: '张三',
+        age: 30,
+        job: '工程师'
+    };
+
+    console.log(person); // {name: "张三", age: 30, job: "工程师"}
+
+    delete person.age; // 删除age属性
+
+    console.log(person); // {name: "张三", job: "工程师"}
+    // in 运算符（in operator）。它专门用于检查对象上是否存在指定的属性。
+    console.log('age' in person); // false
+
+    // 2、删除数组元素
+    const fruits = ['苹果', '香蕉', '橙子'];
+
+    console.log(fruits); // ["苹果", "香蕉", "橙子"]
+    console.log(fruits.length); // 3
+
+    // 只是删除索引 1 的值，但不改变数组长度
+    // 被删除的位置变成 "empty"
+    // forEach 遍历时，跳过空元素
+    // for循环访问所有索引，不会跳过空元素
+    delete fruits[1]; // 删除索引为1的元素
+
+    // 数组forEach
+    fruits.forEach((item, index)=>{
+        console.log(item, index);
+    });
+
+    console.log(fruits); // ["苹果", empty, "橙子"]
+    console.log(fruits.length); // 3 (长度不变)
+    console.log(fruits[1]); // undefined
+
+    // 真正删除数组元素，建议调用数组的splice方法
+    let arr = [1, 2, 3, 4];
+    console.log(arr);
+    arr.splice(1, 2); // 从1下标开始删除，删除2个。
+    console.log(arr);
+
+    // 2、typeof 返回变量类型
+
+    // 3、void 求职表达式，返回 undefined
+    /*
+        阻止链接的默认行为‌：在HTML中，通常点击链接会导航到另一个页面。
+        使用void运算符可以阻止这种默认行为，例如：<a href="javascript:void(0);">Click me</a>。
+        这样点击链接时不会导致页面跳转，而是执行一些JavaScript代码‌
+     */
+
+    // 4、in 检查对象是否有指定的属性
+    /*
+       JavaScript 中的 in 运算符用于检查对象中是否存在指定的属性。
+       这个运算符可以用于检查对象的自有属性或者继承的属性（会检查原型链）。
+     */
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.greet = function() {
+        console.log("Hello, my name is " + this.name);
+    };
+
+    const alice = new Person("Alice", 25);
+
+    console.log("name" in alice); // 输出: true
+    console.log("age" in alice); // 输出: true
+    console.log("greet" in alice); // 输出: true，因为 greet 是通过原型继承的属性
+
+    /*
+        使用 hasOwnProperty() 方法与 in 的区别：hasOwnProperty() 方法
+        用于检查对象自身属性中是否存在指定的属性，而不检查原型链。
+     */
+    console.log(alice.hasOwnProperty("name")); // 输出: true
+    console.log(alice.hasOwnProperty("greet")); // 输出: false，因为 greet 是通过原型继承的属性
+
+    // instanceof 检查对象是否是某个构造函数的实例
+    function Car(make, model) {
+        this.make = make;
+        this.model = model;
+    }
+
+    const myCar = new Car('Toyota', 'Corolla');
+
+    console.log(myCar instanceof Car); // 输出：true
+    console.log(myCar instanceof Object); // 输出：true，因为所有对象都是Object的实例
+    console.log(myCar instanceof Date); // 输出：false，因为myCar不是Date的实例
+</script>
+</body>
+</html>
